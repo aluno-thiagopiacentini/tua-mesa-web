@@ -1,0 +1,30 @@
+<div class="example-container">
+  <mat-form-field appearance="outline">
+    <mat-label>Insira seu email</mat-label>
+    <input matInput placeholder="email@example.com" [formControl]="email" required>
+    <button mat-icon-button matSuffix>
+      <mat-icon matSuffix>mail_outline</mat-icon>
+    </button>
+    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline">
+    <mat-label>Insira seu usuário</mat-label>
+    <input matInput placeholder="Username" required>
+    <button mat-icon-button matSuffix>
+      <mat-icon matSuffix>person</mat-icon>
+    </button>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline">
+    <mat-label>Insira sua senha</mat-label>
+    <input matInput [type]="hide ? 'password' : 'text'" required>
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Senha oculta'"
+      [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+<button mat-flat-button class="btn-logar" color="primary">Entrar</button>
+
+<mat-label>Insira sua senha</mat-label>

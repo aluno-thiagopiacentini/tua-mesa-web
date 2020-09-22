@@ -37,16 +37,23 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
+    NavBarComponent,
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatCardModule,
     MatSliderModule,
     HttpClientModule,
     MatIconModule,
@@ -66,7 +73,6 @@ import { HttpClientModule } from '@angular/common/http';
     MatToolbarModule,
     MatListModule,
     MatGridListModule,
-    MatCardModule,
     MatStepperModule,
     MatTabsModule,
     MatExpansionModule,
