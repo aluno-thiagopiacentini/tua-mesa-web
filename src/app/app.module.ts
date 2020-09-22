@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
-import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -35,18 +34,23 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatInputModule } from '@angular/material/input';
 
+import { ReactiveFormsModule, FormControl, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { HomeComponent } from './home/home.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { FormUserComponent } from './form-user/form-user.component';
+import { FormCompanyComponent } from './form-company/form-company.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     NavBarComponent,
+    FormUserComponent,
+    FormCompanyComponent,
+    LoginComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -55,6 +59,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     BrowserAnimationsModule,
     MatCardModule,
     MatSliderModule,
+    MatFormFieldModule,
     HttpClientModule,
     MatIconModule,
     MatTableModule,
@@ -104,7 +109,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     MatTooltipModule,
     MatTableModule,
     MatPaginatorModule
-],
+  ],
   providers: [
     MatDateRangePicker,
   ],
