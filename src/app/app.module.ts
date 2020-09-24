@@ -38,19 +38,17 @@ import { MatInputModule } from '@angular/material/input';
 
 import { ReactiveFormsModule, FormControl, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { FormUserComponent } from './form-user/form-user.component';
-import { FormCompanyComponent } from './form-company/form-company.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { QueuesComponent } from './queues/queues.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavBarComponent,
-    FormUserComponent,
-    FormCompanyComponent,
     LoginComponent,
+    RegisterComponent,
+    QueuesComponent,
   ],
   imports: [
     ReactiveFormsModule,
