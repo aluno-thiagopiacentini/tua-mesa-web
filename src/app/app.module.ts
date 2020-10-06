@@ -41,7 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { QueuesComponent } from './queues/queues.component';
-
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +49,7 @@ import { QueuesComponent } from './queues/queues.component';
     LoginComponent,
     RegisterComponent,
     QueuesComponent,
+    UsersComponent,
   ],
   imports: [
     ReactiveFormsModule,
