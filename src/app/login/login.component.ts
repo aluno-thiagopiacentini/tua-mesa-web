@@ -1,17 +1,25 @@
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { ApiClient } from '../shared/http-common';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
 
-  constructor() { }
+export class LoginComponent implements OnInit {
+  private apiClient: ApiClient;
+
+  constructor(apiClient: ApiClient) { 
+    this.apiClient = apiClient;
+  }
 
   email = new FormControl('', [Validators.required, Validators.email]);
-
+  username = new FormControl('', [Validators.required]);
+  password = new FormControl('', [Validators.required]);
+  form01: FormGroup;
+  
   hide = true;
 
   // tslint:disable-next-line: typedef
@@ -23,6 +31,28 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.form01 = new FormGroup({
+      email: new FormControl()
+   });
+
+  }
+
+  async doLogin(): Promise<void> {
+
+    await this.apiClient.post({
+      url: '/api/users/login',
+      data: {
+        email: this.email.value
+      },
+      headers: {
+        "Content-type": "application/json",
+        'X-Requested-With': 'XMLHttpRequest'
+      },
+      auth: {
+        username: this.username.value,
+        password: this.password.value
+    }
+    })
   }
 
 }
