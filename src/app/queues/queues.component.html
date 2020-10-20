@@ -1,37 +1,31 @@
 <div class="p-5">
   <div class="card">
-    <div class="card-header">
-      <h2>
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h1 class="my-auto">
         Filas
-      </h2>
+      </h1>
+      <div>
+        <button class="btn btn-primary" [routerLink]="['nova']">Adicionar</button>
+        <button class="btn btn-secondary" (click)="onRefresh()">Atualizar</button>
+      </div>
     </div>
     <div class="card-body">
-      <table class="table table-striped text-center">
+      <table class="table table-striped text-center" *ngIf="queues$ | async as queues; else loadingError">
         <thead>
           <tr>
             <th scope="col" class="text-left">ID</th>
-            <th scope="col">Nome</th>
+            <th scope="col">Ordem</th>
             <th scope="col">Prioritária</th>
             <th scope="col">Ativa</th>
             <th scope="col">Ações</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row" class="text-left">1</th>
-            <td>Fila 1</td>
-            <td>Sim</td>
-            <td>Ativa</td>
-            <td colspan="2">
-              <span class="material-icons mx-2">edit</span>
-              <span class="material-icons mx-2">delete_forever</span>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row" class="text-left">2</th>
-            <td>Fila 2</td>
-            <td>Não</td>
-            <td>Inativa</td>
+          <tr *ngFor="let queue of queues">
+            <th scope="row" class="text-left">{{queue.id}}</th>
+            <td>{{ queue.nome }}</td>
+            <td>{{ queue.priority }}</td>
+            <td>{{queue.status }}</td>
             <td colspan="2">
               <span class="material-icons mx-2">edit</span>
               <span class="material-icons mx-2">delete_forever</span>
@@ -39,15 +33,14 @@
           </tr>
         </tbody>
       </table>
-
-
-
-
+      <ng-template #loadingError>
+        <div *ngIf="error$ | async; else loading">
+          Erro ao carregar a fila de clientes
+        </div>
+        <ng-template #loading>
+          <span>Carregando filas...</span>
+        </ng-template>
+      </ng-template>
     </div>
   </div>
-  <div class="pt-4">
-    <a class="btn btn-primary">Adicionar</a>
-  </div>
-
-
 </div>

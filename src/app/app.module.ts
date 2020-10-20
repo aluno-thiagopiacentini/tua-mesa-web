@@ -1,3 +1,4 @@
+import { SharedModule } from './shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -42,6 +43,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { QueuesComponent } from './queues/queues.component';
 import { UsersComponent } from './users/users.component';
+import { QueueFormComponent } from './queue-form/queue-form.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -50,12 +53,16 @@ import { UsersComponent } from './users/users.component';
     RegisterComponent,
     QueuesComponent,
     UsersComponent,
+    QueueFormComponent,
   ],
   imports: [
     ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    ModalModule.forRoot(),
+    SharedModule,
     MatCardModule,
     MatSliderModule,
     MatFormFieldModule,

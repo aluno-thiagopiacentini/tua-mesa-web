@@ -1,15 +1,19 @@
 <div class="p-5">
   <div class="card">
-    <div class="card-header">
+    <div class="card-header d-flex justify-content-between align-items-center">
       <h2>
         Usuários
       </h2>
+      <div>
+        <button class="btn btn-primary">Adicionar</button>
+        <button class="btn btn-secondary" (click)="onRefresh()">Atualizar</button>
+      </div>
     </div>
     <div class="card-body">
-      <table class="table table-striped text-center">
+      <table class="table table-striped text-center" *ngIf="users$ | async as users; else loadingError" >
         <thead>
           <tr>
-            <th scope="col">Nome</th>
+            <th scope="col">Cargo</th>
             <th scope="col">Usuário</th>
             <th scope="col">Senha</th>
             <th scope="col">Admin</th>
@@ -18,23 +22,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Gerente</td>
-            <td>ger_admin</td>
-            <td>******</td>
-            <td>Sim</td>
-            <td>Ativa</td>
-            <td colspan="2">
-              <span class="material-icons mx-2">edit</span>
-              <span class="material-icons mx-2">delete_forever</span>
-            </td>
-          </tr>
-          <tr>
-            <td>Atedente</td>
-            <td>atend_maria</td>
-            <td>******</td>
-            <td>Não</td>
-            <td>Ativa</td>
+          <tr *ngFor="let user of users">
+            <td>{{user.cargo}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.senha}}</td>
+            <td>{{user.admin}}</td>
+            <td>{{user.status}}</td>
             <td colspan="2">
               <span class="material-icons mx-2">edit</span>
               <span class="material-icons mx-2">delete_forever</span>
@@ -42,9 +35,14 @@
           </tr>
         </tbody>
       </table>
+      <ng-template #loadingError>
+        <div *ngIf="error$ | async; else loading">
+          Erro ao carregar a fila de clientes
+        </div>
+        <ng-template #loading>
+          <span>Carregando filas...</span>
+        </ng-template>
+      </ng-template>
     </div>
-  </div>
-  <div class="pt-4">
-    <a class="btn btn-primary">Adicionar</a>
   </div>
 </div>

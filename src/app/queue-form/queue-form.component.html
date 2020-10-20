@@ -1,0 +1,68 @@
+<div class="p-5">
+  <div class="card p-3">
+    <form class="needs-validation" novalidate [formGroup]="form">
+      <div class="form-row">
+        <div class="col-md mb-3">
+          <label for="validationServer01">Nome da fila</label>
+          <input type="text" class="form-control is-valid" id="nome" placeholder="Nome da fila" formControlName="nome"
+            [ngClass]="{ 'is-invalid': submitted && hasError('nome') }" />
+          <div class="invalid-feedback" *ngIf="hasError('nome') && hasError('nome')['required']">
+            Insira um nome para a fila
+          </div>
+          <div class="invalid-feedback" *ngIf="hasError('nome') && hasError('nome')['minlength']">
+            Nome precisa ter no mínimo
+            {{ hasError("nome")["minlength"].requiredLength }} caracteres.
+          </div>
+          <div class="invalid-feedback" *ngIf="hasError('nome') && hasError('nome')['maxlength']">
+            Nome precisa ter no máximo
+            {{ hasError("nome")["maxlength"].requiredLength }} caracteres.
+          </div>
+        </div>
+
+        <div class="col-md mb-3">
+          <label for="validationServer01">Prioritária</label>
+          <input type="text" class="form-control is-valid" id="priority" placeholder="Preferencial?"
+            formControlName="priority" [ngClass]="{ 'is-invalid': submitted && hasError('priority') }" />
+          <div class="invalid-feedback" *ngIf="hasError('priority') && hasError('priority')['required']">
+            Informe se a fila é prioritária
+          </div>
+          <div class="invalid-feedback" *ngIf="hasError('priority') && hasError('priority')['minlength']">
+            Prioridade precisa ter no mínimo
+            {{ hasError("priority")["minlength"].requiredLength }} caracteres.
+          </div>
+          <div class="invalid-feedback" *ngIf="hasError('priority') && hasError('priority')['maxlength']">
+            Prioridade precisa ter no máximo
+            {{ hasError("priority")["maxlength"].requiredLength }} caracteres.
+          </div>
+        </div>
+
+        <div class="col-md mb-3">
+          <label for="validationServer01">Status</label>
+          <input type="text" class="form-control is-valid" id="status" placeholder="Informe o status"
+            formControlName="status" [ngClass]="{ 'is-invalid': submitted && hasError('status') }" />
+          <div class="invalid-feedback" *ngIf="hasError('status') && hasError('status')['required']">
+            Informe o status da fila
+          </div>
+          <div class="invalid-feedback" *ngIf="hasError('status') && hasError('status')['minlength']">
+            Status precisa ter no mínimo
+            {{ hasError("status")["minlength"].requiredLength }} caracteres.
+          </div>
+          <div class="invalid-feedback" *ngIf="hasError('status') && hasError('status')['maxlength']">
+            Status precisa ter no máximo
+            {{ hasError("status")["maxlength"].requiredLength }} caracteres.
+          </div>
+        </div>
+
+      </div>
+
+      <div>
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+          Salvar
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="onCancel()">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
