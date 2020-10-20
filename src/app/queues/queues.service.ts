@@ -5,26 +5,45 @@ import { delay, take, tap } from 'rxjs/operators';
 import { environment } from './../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class QueuesService {
-
   private readonly API = `${environment.API}filas`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   // tslint:disable-next-line: typedef
-  listQueues(){
-    return this.http.get<Queues[]>(this.API)
-    .pipe(
-      delay(1000),
-      tap(console.log)
-    );
+  listQueues() {
+    return this.http
+      .get<Queues[]>(this.API)
+      .pipe(delay(1000), tap(console.log));
   }
 
   // tslint:disable-next-line: typedef
-  creatQueues(queue){
+  loadById(id) {
+    return this.http.get<Queues>(`${this.API}/${id}`).pipe(take(1));
+  }
+
+  // tslint:disable-next-line: typedef
+  private createQueues(queue) {
     return this.http.post(this.API, queue).pipe(take(1));
   }
 
+  // tslint:disable-next-line: typedef
+  private updateQueues(queue) {
+    return this.http.put(`${this.API}/${queue.id}`, queue).pipe(take(1));
+  }
+
+  // tslint:disable-next-line: typedef
+  save(queue) {
+    if (queue.id) {
+      return this.updateQueues(queue);
+    }
+    return this.createQueues(queue);
+  }
+
+  // tslint:disable-next-line: typedef
+  remove(id) {
+    return this.http.delete(`${this.API}/${id}`).pipe(take(1));
+  }
 }

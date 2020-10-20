@@ -3,20 +3,8 @@
     {
       "id": 1,
       "nome": "fila 1",
-      "status": "Inativo",
-      "priority": "Não"
-    },
-    {
-      "id": 2,
-      "nome": "fila 2",
-      "status": "Ativo",
-      "priority": "Não"
-    },
-    {
-      "id": 3,
-      "nome": "fila 3",
-      "status": "Inativo",
-      "priority": "Não"
+      "priority": "sim",
+      "status": "ativo"
     }
   ],
   "users": [

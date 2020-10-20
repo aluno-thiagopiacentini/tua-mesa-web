@@ -3,5 +3,4 @@ export interface Queues {
   nome: string;
   status: string;
   priority: string;
-  rating: number;
 }

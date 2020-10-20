@@ -27,8 +27,14 @@
             <td>{{ queue.priority }}</td>
             <td>{{queue.status }}</td>
             <td colspan="2">
-              <span class="material-icons mx-2">edit</span>
-              <span class="material-icons mx-2">delete_forever</span>
+              <span>
+                <button class="btn btn-outline-warning" (click)="onEdit(queue.id)">
+                  Editar
+                </button>
+                <button class="btn btn-outline-danger" (click)="onDelet(queue)">
+                  Excluir
+                </button>
+              </span>
             </td>
           </tr>
         </tbody>
@@ -44,3 +50,11 @@
     </div>
   </div>
 </div>
+
+<ng-template #deleteModal>
+  <div class="modal-body text-center">
+    <p>Confirma a exclusão desta fila?</p>
+    <button type="button" class="btn btn-default" (click)="onConfirmDelete()">Sim</button>
+    <button type="button" class="btn btn-primary" (click)="onDeclineDelete()">Não</button>
+  </div>
+</ng-template>
