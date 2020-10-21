@@ -1,0 +1,32 @@
+.teste{
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+    align-items: center
+}
+.teste1{
+	
+}
+.teste2{
+	border:solid 2px;
+    border-radius:20px;
+	width: 150%;
+	height: 100%;
+	padding: 30px;
+}
+.entrar5{
+	margin-top: 30px;
+	border:solid 2px;
+    border-radius:20px;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.entrar5 + button{
+	margin-left: 10px;
+}
+.botao{
+	margin-left: 200px;
+}

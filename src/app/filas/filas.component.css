@@ -1,0 +1,39 @@
+.teste{
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+    align-items: center
+}
+.teste1{
+	
+}
+.teste2{
+	border:solid 2px;
+    border-radius:20px;
+	width: 150%;
+	height: 100%;
+	padding: 30px;
+}
+.entrar{
+	width: 30%;
+	border:solid 2px;
+    border-radius:20px; 
+}
+
+.caixinha{
+	margin-bottom: 10px;
+	width: 50%;
+	height:50%;
+	border:solid 2px;
+    border-radius:20px;
+}
+
+.caixinha2{
+	width: 50%;
+	height:50%;
+	border:solid 2px;
+    border-radius:20px;
+
+}
