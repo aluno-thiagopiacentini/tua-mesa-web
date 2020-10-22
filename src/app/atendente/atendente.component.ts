@@ -15,6 +15,20 @@ export class Atendente implements OnInit {
 
   }
 
+  Valordoback: number
+
+  Senha: number;
+  Usuario: string;
+  Email: string;
+
+  nome1(){
+  	console.log(this.Senha)
+  	if(this.Valordoback == this.Senha){
+  	console.log("correto")
+  	}
+  	
+  }
+
   ngOnInit(): void {
   }
 

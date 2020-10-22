@@ -14,6 +14,19 @@ export class Filas implements OnInit {
 
   }
 
+  arrayde: any = [{
+  	nome:"Douglas",
+  	sobrenome: "Santos"
+  },
+  {nome:"Mathias",
+  sobrenome:"santos"
+
+  }
+
+  ]
+  
+
+
   ngOnInit(): void {
   }
 

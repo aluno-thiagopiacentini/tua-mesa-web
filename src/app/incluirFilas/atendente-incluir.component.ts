@@ -18,5 +18,12 @@ export class AtendenteIncluir implements OnInit {
   ngOnInit(): void {
   }
 
+  nome2(){
+  	console.log("nome2 aqui")
+  }
+
+  nome3(){
+  	console.log("nome3 aqui")
+  }
 
 }

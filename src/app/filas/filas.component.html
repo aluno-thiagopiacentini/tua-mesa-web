@@ -1,8 +1,24 @@
 
+<table>
+	<thead>
+		<tr >
+			<th> ID</th>
+			<th> ID2</th>
+		</tr>
+	</thead>
+	<tbody *ngFor = "let prod of arrayde">
+		<td>{{prod.nome}}</td>
+		<td>valor2</td>
+	</tbody>
+</table>
+
+
+
+
 
 <table class="table">
   <thead>
-    <tr>
+    <tr >
       <th scope="col">ID</th>
       <th scope="col">Nome</th>
       <th scope="col">Celular</th>
@@ -11,11 +27,11 @@
       <th scope="col">Ações</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngFor="let i of arrayde">
     <tr>
       <th scope="row">1</th>
-      <td>Douglas</td>
-      <td>999999999</td>
+      <td>{{i.nome}}</td>
+      <td>ovue</td>
       <td>40min</td>
       <td>Aguardando Cliente</td>
       <td>Icone</td>
@@ -84,3 +100,5 @@
 	<button type="submit" class="btn entrar">Enviar SMS</button>
 </div>
 
+
+<p>{{ arrayde.nome }}</p>
