@@ -14,7 +14,7 @@
         <thead>
           <tr>
             <th scope="col" class="text-left">ID</th>
-            <th scope="col">Ordem</th>
+            <th scope="col">Nome</th>
             <th scope="col">Prioritária</th>
             <th scope="col">Ativa</th>
             <th scope="col">Ações</th>
@@ -23,8 +23,8 @@
         <tbody>
           <tr *ngFor="let queue of queues">
             <th scope="row" class="text-left">{{queue.id}}</th>
-            <td>{{ queue.nome }}</td>
-            <td>{{ queue.priority }}</td>
+            <td>{{ queue.name }}</td>
+            <td>{{ queue.is_priority }}</td>
             <td>{{queue.status }}</td>
             <td colspan="2">
               <span>

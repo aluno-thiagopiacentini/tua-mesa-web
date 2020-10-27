@@ -1,6 +1,8 @@
 export interface Queues {
   id: number;
-  nome: string;
-  status: string;
-  priority: string;
+  name: string;
+  status: boolean;
+  is_priority: boolean;
+  created_at: Date;
+  updated_at: Date;
 }

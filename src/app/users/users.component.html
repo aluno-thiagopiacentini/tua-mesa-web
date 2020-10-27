@@ -5,7 +5,7 @@
         Usuários
       </h2>
       <div>
-        <button class="btn btn-primary">Adicionar</button>
+        <button class="btn btn-primary" [routerLink]="['novo']">Adicionar</button>
         <button class="btn btn-secondary" (click)="onRefresh()">Atualizar</button>
       </div>
     </div>
@@ -13,7 +13,8 @@
       <table class="table table-striped text-center" *ngIf="users$ | async as users; else loadingError" >
         <thead>
           <tr>
-            <th scope="col">Cargo</th>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
             <th scope="col">Usuário</th>
             <th scope="col">Senha</th>
             <th scope="col">Admin</th>
@@ -23,14 +24,21 @@
         </thead>
         <tbody>
           <tr *ngFor="let user of users">
+            <td>{{user.id}}</td>
             <td>{{user.cargo}}</td>
             <td>{{user.username}}</td>
             <td>{{user.senha}}</td>
             <td>{{user.admin}}</td>
             <td>{{user.status}}</td>
             <td colspan="2">
-              <span class="material-icons mx-2">edit</span>
-              <span class="material-icons mx-2">delete_forever</span>
+              <span>
+                <button class="btn btn-outline-warning" (click)="onEdit(user.id)">
+                  Editar
+                </button>
+                <button class="btn btn-outline-danger" (click)="onDelet(user)">
+                  Excluir
+                </button>
+              </span>
             </td>
           </tr>
         </tbody>

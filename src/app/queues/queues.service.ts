@@ -9,13 +9,16 @@ import { environment } from './../../environments/environment';
 })
 export class QueuesService {
   private readonly API = `${environment.API}filas`;
+  // private readonly API = `${environment.API}/waiting-lines`;
 
   constructor(private http: HttpClient) {}
 
   // tslint:disable-next-line: typedef
   listQueues() {
     return this.http
-      .get<Queues[]>(this.API)
+      .get<Queues[]>(this.API,
+        {withCredentials: true}
+        )
       .pipe(delay(1000), tap(console.log));
   }
 

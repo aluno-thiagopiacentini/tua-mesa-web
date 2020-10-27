@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { QueuesResolverGuard } from './queues-resolver.guard';
+import { QueuesResolverGuard } from './queues.resolver.guard';
 
 describe('QueuesResolverGuard', () => {
   let guard: QueuesResolverGuard;

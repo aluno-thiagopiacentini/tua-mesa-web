@@ -72,7 +72,7 @@ export class QueuesComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   handleError() {
-    this.alerteService.showAlertDanger('Erro ao carregar a fila de clientes');
+    this.alerteService.showAlertDanger('Erro ao carregar a fila de usuários');
     // this.bsModalRef = this.modalService.show(AlertModalComponent);
     // this.bsModalRef.content.type = 'danger';
     // this.bsModalRef.content.message = 'Erro ao carregar a fila de clientes';
@@ -84,22 +84,25 @@ export class QueuesComponent implements OnInit {
   }
 
   // tslint:disable-next-line: typedef
-  onDelet(id){
+  onDelet(id) {
     this.queueSelected = id;
-    this.deleteModalRef = this.modalService.show(this.deleteModal, {class: 'class-sm'});
+    this.deleteModalRef = this.modalService.show(this.deleteModal, {
+      class: 'class-sm',
+    });
   }
 
   // tslint:disable-next-line: typedef
-  onConfirmDelete(){
-    this.service.remove(this.queueSelected.id)
-    .subscribe(
-      success => {
+  onConfirmDelete() {
+    this.service.remove(this.queueSelected.id).subscribe(
+      (success) => {
         this.onRefresh();
         this.onDeclineDelete();
       },
-      error => {
-        this.alerteService.showAlertDanger('Erro ao excluir fila. Atualize e tente novamente'),
-        this.onDeclineDelete();
+      (error) => {
+        this.alerteService.showAlertDanger(
+          'Erro ao excluir fila. Atualize e tente novamente'
+        ),
+          this.onDeclineDelete();
       }
     );
   }
@@ -108,5 +111,4 @@ export class QueuesComponent implements OnInit {
   onDeclineDelete() {
     this.deleteModalRef.hide();
   }
-
 }

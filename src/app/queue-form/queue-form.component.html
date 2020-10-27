@@ -1,18 +1,20 @@
 <div class="p-5">
   <div class="card p-3">
-    <form class="needs-validation" novalidate [formGroup]="form">
+    <form class="needs-validation" novalidate [formGroup]="formQueue">
       <div class="form-row">
         <div class="col-md mb-3">
-          <label for="validationServer01">Nome da fila</label>
+          <label for="nome">Nome da fila</label>
           <input type="text" class="form-control is-valid" id="nome" placeholder="Nome da fila" formControlName="nome"
             [ngClass]="{ 'is-invalid': submitted && hasError('nome') }" />
           <div class="invalid-feedback" *ngIf="hasError('nome') && hasError('nome')['required']">
             Insira um nome para a fila
           </div>
+
           <div class="invalid-feedback" *ngIf="hasError('nome') && hasError('nome')['minlength']">
             Nome precisa ter no mínimo
             {{ hasError("nome")["minlength"].requiredLength }} caracteres.
           </div>
+
           <div class="invalid-feedback" *ngIf="hasError('nome') && hasError('nome')['maxlength']">
             Nome precisa ter no máximo
             {{ hasError("nome")["maxlength"].requiredLength }} caracteres.
@@ -20,7 +22,7 @@
         </div>
 
         <div class="col-md mb-3">
-          <label for="validationServer01">Prioritária</label>
+          <label for="priority">Prioritária</label>
           <input type="text" class="form-control is-valid" id="priority" placeholder="Preferencial?"
             formControlName="priority" [ngClass]="{ 'is-invalid': submitted && hasError('priority') }" />
           <div class="invalid-feedback" *ngIf="hasError('priority') && hasError('priority')['required']">
@@ -37,7 +39,7 @@
         </div>
 
         <div class="col-md mb-3">
-          <label for="validationServer01">Status</label>
+          <label for="status">Status</label>
           <input type="text" class="form-control is-valid" id="status" placeholder="Informe o status"
             formControlName="status" [ngClass]="{ 'is-invalid': submitted && hasError('status') }" />
           <div class="invalid-feedback" *ngIf="hasError('status') && hasError('status')['required']">

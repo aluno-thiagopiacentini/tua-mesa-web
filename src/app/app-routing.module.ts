@@ -1,4 +1,7 @@
-import { QueuesResolverGuard } from './guards/queues-resolver.guard';
+import { UsersFormComponent } from './users-form/users-form.component';
+import { SignupComponent } from './signup/signup.component';
+import { HomeComponent } from './layout/home/home.component';
+import { AuthGuard } from './guards/auth.guard';
 import { QueueFormComponent } from './queue-form/queue-form.component';
 import { UsersComponent } from './users/users.component';
 import { RegisterComponent } from './register/register.component';
@@ -6,16 +9,45 @@ import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { QueuesComponent } from './queues/queues.component';
+import { QueuesResolverGuard } from './guards/queues.resolver.guard';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'filas', component: QueuesComponent },
+  {
+    path: 'filas',
+    component: QueuesComponent,
+    // canActivate: [AuthGuard],
+  },
+  {
+    path: 'usuarios',
+    component: UsersComponent,
+    // canActivate: [AuthGuard],
+  },
+  {
+    path: 'cadastro',
+    component: RegisterComponent,
+    //  canActivate: [AuthGuard],
+  },
+  {
+    path: 'signup',
+    component: SignupComponent,
+    //  canActivate: [AuthGuard],
+  },
+  {
+    path: 'usuarios/novo',
+    component: UsersFormComponent,
+    resolve: {
+      queue: QueuesResolverGuard,
+    },
+    // canActivate: [AuthGuard],
+  },
   {
     path: 'filas/nova',
     component: QueueFormComponent,
     resolve: {
       queue: QueuesResolverGuard,
     },
+    // canActivate: [AuthGuard],
   },
   {
     path: 'filas/editar/:id',
@@ -23,9 +55,9 @@ const routes: Routes = [
     resolve: {
       queue: QueuesResolverGuard,
     },
+    // canActivate: [AuthGuard],
   },
-  { path: 'usuarios', component: UsersComponent },
-  { path: 'cadastro', component: RegisterComponent },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

@@ -14,7 +14,7 @@ import { map, switchMap } from 'rxjs/operators';
   preserveWhitespaces: true,
 })
 export class QueueFormComponent implements OnInit {
-  form: FormGroup;
+  formQueue: FormGroup;
   submitted = false;
 
   constructor(
@@ -53,7 +53,7 @@ export class QueueFormComponent implements OnInit {
 
     const queue = this.route.snapshot.data.queue;
 
-    this.form = this.formBuilder.group({
+    this.formQueue = this.formBuilder.group({
       id: [queue.id],
       nome: [queue.nome, [Validators.required, Validators.minLength(4), Validators.maxLength(20), ], ],
       priority: [
@@ -75,9 +75,10 @@ export class QueueFormComponent implements OnInit {
     });
   }
 
+
   // tslint:disable-next-line: typedef
   updateForm(queue) {
-    this.form.patchValue({
+    this.formQueue.patchValue({
       id: queue.id,
       nome: queue.nome,
       priority: queue.priority,
@@ -85,16 +86,17 @@ export class QueueFormComponent implements OnInit {
     });
   }
 
+
   // tslint:disable-next-line: typedef
   hasError(field: string) {
-    return this.form.get(field).errors;
+    return this.formQueue.get(field).errors;
   }
 
   // tslint:disable-next-line: typedef
   onSubmit() {
     this.submitted = true;
-    console.log(this.form.value);
-    if (this.form.valid) {
+    console.log(this.formQueue.value);
+    if (this.formQueue.valid) {
       console.log('submit');
 
       // tslint:disable-next-line: prefer-const
@@ -102,14 +104,14 @@ export class QueueFormComponent implements OnInit {
       // tslint:disable-next-line: prefer-const
       let msgError = 'Erro ao criar fila. Tente novamente!';
 
-      if (this.form.value.id) {
+      if (this.formQueue.value.id) {
         // tslint:disable-next-line: prefer-const
         msgSuccess = 'Fila atualizada com sucesso!';
         // tslint:disable-next-line: prefer-const
         msgError = 'Erro ao atualizar fila. Tente novamente!';
       }
 
-      this.service.save(this.form.value).subscribe(
+      this.service.save(this.formQueue.value).subscribe(
         (success) => {
           this.modal.showAlertSuccess(msgSuccess);
           this.location.back();
@@ -151,7 +153,7 @@ export class QueueFormComponent implements OnInit {
   // tslint:disable-next-line: typedef
   onCancel() {
     this.submitted = false;
-    this.form.reset();
+    this.formQueue.reset();
     this.location.back();
     // console.log('cancel');
   }
