@@ -1,9 +1,4 @@
 import { UsersResolverGuard } from './guards/users.resolver.guard';
-import { UsersFormComponent } from './users-form/users-form.component';
-import { SignupComponent } from './signup/signup.component';
-import { HomeComponent } from './layout/home/home.component';
-// import { AuthGuard } from './guards/auth.guard';
-import { QueueFormComponent } from './queue-form/queue-form.component';
 import { UsersComponent } from './users/users.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -11,6 +6,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { QueuesComponent } from './queues/queues.component';
 import { QueuesResolverGuard } from './guards/queues.resolver.guard';
+import { QueuesFormComponent } from './queues/queues-form/queues-form.component';
+import { UsersFormComponent } from './users/users-form/users-form.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -30,11 +27,6 @@ const routes: Routes = [
     //  canActivate: [AuthGuard],
   },
   {
-    path: 'signup',
-    component: SignupComponent,
-    //  canActivate: [AuthGuard],
-  },
-  {
     path: 'users/new',
     component: UsersFormComponent,
     resolve: {
@@ -44,7 +36,7 @@ const routes: Routes = [
   },
   {
     path: 'filas/new',
-    component: QueueFormComponent,
+    component: QueuesFormComponent,
     resolve: {
       queue: QueuesResolverGuard,
     },
@@ -60,7 +52,7 @@ const routes: Routes = [
   },
   {
     path: 'filas/editar/:id',
-    component: QueueFormComponent,
+    component: QueuesFormComponent,
     resolve: {
       queue: QueuesResolverGuard,
     },

@@ -2,18 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { QueuesService } from '../queues.service';
+import { AlertModalService } from '../../shared/alert-modal.service';
+
 import { partitionArray } from '@angular/compiler/src/util';
 import { map, switchMap } from 'rxjs/operators';
-import { QueuesService } from './../queues/queues.service';
-import { AlertModalService } from './../shared/alert-modal.service';
 
 @Component({
-  selector: 'app-queue-form',
-  templateUrl: './queue-form.component.html',
-  styleUrls: ['./queue-form.component.scss'],
+  selector: 'app-queues-form',
+  templateUrl: './queues-form.component.html',
+  styleUrls: ['./queues-form.component.scss'],
   preserveWhitespaces: true,
 })
-export class QueueFormComponent implements OnInit {
+export class QueuesFormComponent implements OnInit {
   formQueue: FormGroup;
   submitted = false;
 

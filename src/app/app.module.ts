@@ -39,15 +39,15 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 
-import { ReactiveFormsModule, FormControl, FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { QueuesComponent } from './queues/queues.component';
 import { UsersComponent } from './users/users.component';
-import { QueueFormComponent } from './queue-form/queue-form.component';
-import { UsersFormComponent } from './users-form/users-form.component';
-import { ModalModule } from 'ngx-bootstrap/modal';
+import { UsersFormComponent } from './users/users-form/users-form.component';
+import { QueuesFormComponent } from './queues/queues-form/queues-form.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +56,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     RegisterComponent,
     QueuesComponent,
     UsersComponent,
-    QueueFormComponent,
+    QueuesFormComponent,
     UsersFormComponent,
   ],
   imports: [

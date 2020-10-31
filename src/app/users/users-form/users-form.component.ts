@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AlertModalService } from './../../shared/alert-modal.service';
+import { UsersService } from './../users.service';
 // import { UsersService } from './../users/users.service';
-import { AlertModalService } from './../shared/alert-modal.service';
-import { UsersService } from '../users/users.service';
 
 @Component({
   selector: 'app-users-form',

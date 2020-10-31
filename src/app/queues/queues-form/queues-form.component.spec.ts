@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { QueueFormComponent } from './queue-form.component';
+import { QueueFormComponent } from './queues-form.component';
 
 describe('QueueFormComponent', () => {
   let component: QueueFormComponent;

@@ -1,11 +1,11 @@
-import { AlertModalService } from './../shared/alert-modal.service';
+import { AlertModalService } from '../shared/alert-modal.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { empty, Observable, Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Queues } from './queues';
 import { QueuesService } from './queues.service';
-import { AlertModalComponent } from './../shared/alert-modal/alert-modal.component';
+import { AlertModalComponent } from '../shared/alert-modal/alert-modal.component';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
