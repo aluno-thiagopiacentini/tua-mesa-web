@@ -3,36 +3,36 @@
     <form class="needs-validation" novalidate [formGroup]="formUser">
       <div class="form-row">
         <div class="col-md mb-3">
-          <label for="nome">Nome</label>
-          <input type="text" class="form-control is-valid" id="nome" placeholder="Nome do usuário" formControlName="nome"
-            [ngClass]="{ 'is-invalid': submitted && hasError('nome') }" />
-          <div class="invalid-feedback" *ngIf="hasError('nome') && hasError('nome')['required']">
-            Insira um nome
+          <label for="cargo">Cargo</label>
+          <input type="text" class="form-control is-valid" id="cargo" placeholder="Cargo" formControlName="cargo"
+            [ngClass]="{ 'is-invalid': submitted && hasError('cargo') }" />
+          <div class="invalid-feedback" *ngIf="hasError('cargo') && hasError('cargo')['required']">
+            Insira o cargo
           </div>
 
-          <div class="invalid-feedback" *ngIf="hasError('nome') && hasError('nome')['minlength']">
-            Nome precisa ter no mínimo
-            {{ hasError("nome")["minlength"].requiredLength }} caracteres.
+          <div class="invalid-feedback" *ngIf="hasError('cargo') && hasError('cargo')['minlength']">
+            Cargo precisa ter no mínimo
+            {{ hasError("cargo")["minlength"].requiredLength }} caracteres.
           </div>
 
-          <div class="invalid-feedback" *ngIf="hasError('nome') && hasError('nome')['maxlength']">
-            Nome precisa ter no máximo
-            {{ hasError("nome")["maxlength"].requiredLength }} caracteres.
+          <div class="invalid-feedback" *ngIf="hasError('cargo') && hasError('cargo')['maxlength']">
+            cargo precisa ter no máximo
+            {{ hasError("cargo")["maxlength"].requiredLength }} caracteres.
           </div>
         </div>
 
         <div class="col-md mb-3">
-          <label for="usuario">Usuário</label>
-          <input type="text" class="form-control is-valid" id="usuario" placeholder="usuário"
-            formControlName="usuario" [ngClass]="{ 'is-invalid': submitted && hasError('usuario') }" />
-          <div class="invalid-feedback" *ngIf="hasError('usuario') && hasError('usuario')['required']">
+          <label for="username">Usuário</label>
+          <input type="text" class="form-control is-valid" id="username" placeholder="usuário"
+            formControlName="username" [ngClass]="{ 'is-invalid': submitted && hasError('username') }" />
+          <div class="invalid-feedback" *ngIf="hasError('username') && hasError('username')['required']">
             Informe o usuário
           </div>
-          <div class="invalid-feedback" *ngIf="hasError('usuario') && hasError('usuario')['minlength']">
+          <div class="invalid-feedback" *ngIf="hasError('username') && hasError('username')['minlength']">
             Usuário precisa ter no mínimo
-            {{ hasError("usuario")["minlength"].requiredLength }} caracteres.
+            {{ hasError("username")["minlength"].requiredLength }} caracteres.
           </div>
-          <div class="invalid-feedback" *ngIf="hasError('usuario') && hasError('usuario')['maxlength']">
+          <div class="invalid-feedback" *ngIf="hasError('username') && hasError('username')['maxlength']">
             Usuário precisa ter no máximo
             {{ hasError("priority")["maxlength"].requiredLength }} caracteres.
           </div>
@@ -73,19 +73,19 @@
         </div>
 
         <div class="col-md mb-3">
-          <label for="ativo">Ativo</label>
-          <input type="text" class="form-control is-valid" id="ativo" placeholder="Sim ou não"
-            formControlName="ativo" [ngClass]="{ 'is-invalid': submitted && hasError('ativo') }" />
-          <div class="invalid-feedback" *ngIf="hasError('ativo') && hasError('ativo')['required']">
+          <label for="status">Ativo</label>
+          <input type="text" class="form-control is-valid" id="status" placeholder="Sim ou não"
+            formControlName="status" [ngClass]="{ 'is-invalid': submitted && hasError('status') }" />
+          <div class="invalid-feedback" *ngIf="hasError('status') && hasError('status')['required']">
             Sim ou não
           </div>
-          <div class="invalid-feedback" *ngIf="hasError('ativo') && hasError('ativo')['minlength']">
+          <div class="invalid-feedback" *ngIf="hasError('status') && hasError('status')['minlength']">
             Precisa ter no mínimo
-            {{ hasError("ativo")["minlength"].requiredLength }} caracteres.
+            {{ hasError("status")["minlength"].requiredLength }} caracteres.
           </div>
-          <div class="invalid-feedback" *ngIf="hasError('ativo') && hasError('ativo')['maxlength']">
+          <div class="invalid-feedback" *ngIf="hasError('status') && hasError('status')['maxlength']">
             Precisa ter no máximo
-            {{ hasError("ativo")["maxlength"].requiredLength }} caracteres.
+            {{ hasError("status")["maxlength"].requiredLength }} caracteres.
           </div>
         </div>
       </div>

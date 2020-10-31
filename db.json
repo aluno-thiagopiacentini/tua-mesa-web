@@ -2,23 +2,43 @@
   "filas": [
     {
       "id": 1,
-      "name": "fila 1",
-      "status": "ativo",
-      "is_priority": "Sim (Cadeirante)"
+      "name": "angular",
+      "is_priority": "ssss",
+      "status": "ATIVO"
     }
   ],
   "users": [
     {
       "id": 1,
-      "company_id": "15",
-      "role_id": "001",
-      "username": "thiago",
-      "phone_number": "11 97711-3293",
-      "senha": "******",
-      "cargo": "Gerente",
-      "email": "email@email.com",
-      "status": "ativo",
-      "admin": "Sim"
+      "cargo": "atendente",
+      "username": "ssssss@gmail.com",
+      "senha": "123456",
+      "admin": "ssssssssssssss",
+      "status": "ativo"
+    },
+    {
+      "cargo": "teste",
+      "username": "email@gmail.com",
+      "senha": "001122",
+      "admin": "sim",
+      "status": "inativo",
+      "id": 2
+    },
+    {
+      "id": 3,
+      "cargo": "sssss",
+      "username": "ssssss",
+      "senha": "sssssss",
+      "admin": "sssssss",
+      "status": "sssssss"
+    },
+    {
+      "id": 4,
+      "cargo": "teste",
+      "username": "teste",
+      "senha": "testeccc",
+      "admin": "teste",
+      "status": "teste"
     }
   ],
   "company": [

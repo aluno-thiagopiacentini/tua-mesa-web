@@ -24,7 +24,6 @@ export class UsersResolverGuard implements Resolve<Users> {
     }
     return of({
       id: null,
-      name: null,
       cargo: null,
       username: null,
       senha: null,

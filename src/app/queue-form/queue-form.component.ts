@@ -1,11 +1,11 @@
-import { AlertModalService } from './../shared/alert-modal.service';
-import { QueuesService } from './../queues/queues.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { partitionArray } from '@angular/compiler/src/util';
 import { map, switchMap } from 'rxjs/operators';
+import { QueuesService } from './../queues/queues.service';
+import { AlertModalService } from './../shared/alert-modal.service';
 
 @Component({
   selector: 'app-queue-form',
@@ -55,9 +55,10 @@ export class QueueFormComponent implements OnInit {
 
     this.formQueue = this.formBuilder.group({
       id: [queue.id],
-      nome: [queue.nome, [Validators.required, Validators.minLength(4), Validators.maxLength(20), ], ],
-      priority: [
-        queue.priority,
+      name: [ queue.name, [ Validators.required, Validators.minLength(4), Validators.maxLength(20), ],
+      ],
+      is_priority: [
+        queue.is_priority,
         [
           Validators.required,
           Validators.minLength(3),
@@ -75,17 +76,15 @@ export class QueueFormComponent implements OnInit {
     });
   }
 
-
   // tslint:disable-next-line: typedef
   updateForm(queue) {
     this.formQueue.patchValue({
       id: queue.id,
-      nome: queue.nome,
-      priority: queue.priority,
+      name: queue.name,
+      is_priority: queue.is_priority,
       status: queue.status,
     });
   }
-
 
   // tslint:disable-next-line: typedef
   hasError(field: string) {
@@ -116,8 +115,7 @@ export class QueueFormComponent implements OnInit {
           this.modal.showAlertSuccess(msgSuccess);
           this.location.back();
         },
-        (error) =>
-          this.modal.showAlertDanger(msgError)
+        (error) => this.modal.showAlertDanger(msgError)
       );
 
       /*

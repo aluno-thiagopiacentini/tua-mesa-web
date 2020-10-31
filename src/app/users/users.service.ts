@@ -1,9 +1,9 @@
-import { Users } from './users';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { delay, tap, take } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { delay, take, tap } from 'rxjs/operators';
 import { environment } from './../../environments/environment';
-import { pipe } from 'rxjs';
+import { Users } from './users';
+
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +15,9 @@ export class UsersService {
 
   // tslint:disable-next-line: typedef
   listUsers() {
-    return this.http.get<Users[]>(this.API).pipe(delay(1000), tap(console.log));
+    return this.http
+      .get<Users[]>(this.API, { withCredentials: false })
+      .pipe(delay(1000), tap(console.log));
   }
 
   // tslint:disable-next-line: typedef
@@ -30,7 +32,7 @@ export class UsersService {
 
   // tslint:disable-next-line: typedef
   private updateUsers(user) {
-    return this.http.put(`${this.API}/${user.id}`, user).pipe(take(1));
+    return this.http.put(`${this.API}/${user?.id}`, user).pipe(take(1));
   }
 
   // tslint:disable-next-line: typedef

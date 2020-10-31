@@ -1,4 +1,4 @@
-import { AuthGuard } from './guards/auth.guard';
+// import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './login/auth.service';
 import { SharedModule } from './shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -46,11 +46,8 @@ import { RegisterComponent } from './register/register.component';
 import { QueuesComponent } from './queues/queues.component';
 import { UsersComponent } from './users/users.component';
 import { QueueFormComponent } from './queue-form/queue-form.component';
-import { ModalModule } from 'ngx-bootstrap/modal';
-import { HomeComponent } from './layout/home/home.component';
-import { AuthenticationComponent } from './layout/authentication/authentication.component';
-import { SignupComponent } from './signup/signup.component';
 import { UsersFormComponent } from './users-form/users-form.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -60,9 +57,6 @@ import { UsersFormComponent } from './users-form/users-form.component';
     QueuesComponent,
     UsersComponent,
     QueueFormComponent,
-    HomeComponent,
-    AuthenticationComponent,
-    SignupComponent,
     UsersFormComponent,
   ],
   imports: [
@@ -129,7 +123,8 @@ import { UsersFormComponent } from './users-form/users-form.component';
   ],
   providers: [
     MatDateRangePicker,
-    AuthService, AuthGuard
+    AuthService,
+    // AuthGuard,
   ],
   bootstrap: [AppComponent]
 })

@@ -1,8 +1,8 @@
-import { Queues } from './queues';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { delay, take, tap } from 'rxjs/operators';
 import { environment } from './../../environments/environment';
+import { Queues } from './queues';
 
 @Injectable({
   providedIn: 'root',
@@ -16,9 +16,7 @@ export class QueuesService {
   // tslint:disable-next-line: typedef
   listQueues() {
     return this.http
-      .get<Queues[]>(this.API,
-        {withCredentials: true}
-        )
+      .get<Queues[]>(this.API, { withCredentials: true })
       .pipe(delay(1000), tap(console.log));
   }
 

@@ -29,9 +29,9 @@ export class QueuesComponent implements OnInit {
   constructor(
     private service: QueuesService,
     private modalService: BsModalService,
-    private alerteService: AlertModalService,
+    private alertService: AlertModalService,
     private router: Router,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) {}
 
   // tslint:disable-next-line: typedef
@@ -72,7 +72,7 @@ export class QueuesComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   handleError() {
-    this.alerteService.showAlertDanger('Erro ao carregar a fila de usuários');
+    this.alertService.showAlertDanger('Erro ao carregar a fila de usuários');
     // this.bsModalRef = this.modalService.show(AlertModalComponent);
     // this.bsModalRef.content.type = 'danger';
     // this.bsModalRef.content.message = 'Erro ao carregar a fila de clientes';
@@ -99,7 +99,7 @@ export class QueuesComponent implements OnInit {
         this.onDeclineDelete();
       },
       (error) => {
-        this.alerteService.showAlertDanger(
+        this.alertService.showAlertDanger(
           'Erro ao excluir fila. Atualize e tente novamente'
         ),
           this.onDeclineDelete();

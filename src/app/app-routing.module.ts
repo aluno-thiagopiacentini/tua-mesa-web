@@ -1,7 +1,8 @@
+import { UsersResolverGuard } from './guards/users.resolver.guard';
 import { UsersFormComponent } from './users-form/users-form.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './layout/home/home.component';
-import { AuthGuard } from './guards/auth.guard';
+// import { AuthGuard } from './guards/auth.guard';
 import { QueueFormComponent } from './queue-form/queue-form.component';
 import { UsersComponent } from './users/users.component';
 import { RegisterComponent } from './register/register.component';
@@ -19,7 +20,7 @@ const routes: Routes = [
     // canActivate: [AuthGuard],
   },
   {
-    path: 'usuarios',
+    path: 'users',
     component: UsersComponent,
     // canActivate: [AuthGuard],
   },
@@ -34,7 +35,7 @@ const routes: Routes = [
     //  canActivate: [AuthGuard],
   },
   {
-    path: 'usuarios/novo',
+    path: 'users/new',
     component: UsersFormComponent,
     resolve: {
       queue: QueuesResolverGuard,
@@ -42,10 +43,18 @@ const routes: Routes = [
     // canActivate: [AuthGuard],
   },
   {
-    path: 'filas/nova',
+    path: 'filas/new',
     component: QueueFormComponent,
     resolve: {
       queue: QueuesResolverGuard,
+    },
+    // canActivate: [AuthGuard],
+  },
+  {
+    path: 'users/editar/:id',
+    component: UsersFormComponent,
+    resolve: {
+      queue: UsersResolverGuard,
     },
     // canActivate: [AuthGuard],
   },

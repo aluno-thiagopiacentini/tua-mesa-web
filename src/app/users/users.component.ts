@@ -14,8 +14,8 @@ import { Users } from './users';
   preserveWhitespaces: true,
 })
 export class UsersComponent implements OnInit {
-
   // users: Users[];
+  // bsModalRef: BsModalRef;
 
   deleteModalRef: BsModalRef;
   @ViewChild('deleteModal') deleteModal;
@@ -28,10 +28,10 @@ export class UsersComponent implements OnInit {
   constructor(
     private service: UsersService,
     private modalService: BsModalService,
-    private alerteService: AlertModalService,
+    private alertService: AlertModalService,
     private router: Router,
-    private route: ActivatedRoute,
-    ) { }
+    private route: ActivatedRoute
+  ) {}
 
   // tslint:disable-next-line: typedef
   ngOnInit() {
@@ -40,36 +40,37 @@ export class UsersComponent implements OnInit {
   }
   // tslint:disable-next-line: typedef
   onRefresh() {
-    this.users$ = this.service.listUsers()
-      .pipe(
-        // .map()
-        // .tap()
-        // .switchMap()
-        catchError(error => {
-          console.error(error);
-          this.error$.next(true);
-          // tslint:disable-next-line: deprecation
-          return empty();
-        })
-      );
+    this.users$ = this.service.listUsers().pipe(
+      // .map()
+      // .tap()
+      // .switchMap()
+      catchError((error) => {
+        console.error(error);
+        // this.error$.next(true);
+        this.handleError();
+        // tslint:disable-next-line: deprecation
+        return empty();
+      })
+    );
 
-    this.service.listUsers()
+    this.service
+      .listUsers()
       .pipe(
         // tslint:disable-next-line: deprecation
-        catchError(error => empty())
+        catchError((error) => empty())
       )
       .subscribe(
-        dados => {
+        (dados) => {
           console.log(dados);
-        },
+        }
         // error => console.error(error),
         // () => console.log('Observable completo')
       );
   }
 
-   // tslint:disable-next-line: typedef
-   handleError() {
-    this.alerteService.showAlertDanger('Erro ao carregar a fila de clientes');
+  // tslint:disable-next-line: typedef
+  handleError() {
+    this.alertService.showAlertDanger('Erro ao carregar a lista de usuário');
     // this.bsModalRef = this.modalService.show(AlertModalComponent);
     // this.bsModalRef.content.type = 'danger';
     // this.bsModalRef.content.message = 'Erro ao carregar a fila de clientes';
@@ -88,6 +89,7 @@ export class UsersComponent implements OnInit {
     });
   }
 
+  // tslint:disable-next-line: typedef
   onConfirmDelete() {
     this.service.remove(this.userSelected.id).subscribe(
       (success) => {
@@ -95,17 +97,16 @@ export class UsersComponent implements OnInit {
         this.onDeclineDelete();
       },
       (error) => {
-        this.alerteService.showAlertDanger(
+        this.alertService.showAlertDanger(
           'Erro ao excluir usuário. Atualize e tente novamente.'
         ),
-        this.onDeclineDelete();
+          this.onDeclineDelete();
       }
     );
   }
 
+  // tslint:disable-next-line: typedef
   onDeclineDelete() {
-    this.deleteModalRef.hide()
+    this.deleteModalRef.hide();
   }
-
-
 }

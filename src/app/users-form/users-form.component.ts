@@ -1,9 +1,10 @@
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
-import { AlertModalService } from './../shared/alert-modal.service';
-import { UsersService } from './../users/users.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+// import { UsersService } from './../users/users.service';
+import { AlertModalService } from './../shared/alert-modal.service';
+import { UsersService } from '../users/users.service';
 
 @Component({
   selector: 'app-users-form',
@@ -21,37 +22,70 @@ export class UsersFormComponent implements OnInit {
     private modal: AlertModalService,
     private location: Location,
     private route: ActivatedRoute,
+  ) {}
 
-  ) { }
-
-  ngOnInit(): void {
+  // tslint:disable-next-line: typedef
+  ngOnInit() {
     const user = this.route.snapshot.data.user;
 
-    this.formUser = this.formBuilder.group(
-      {
-        id: [user.id],
-        nome: [user.nome, [Validators.required, Validators.minLength(4), Validators.maxLength(20), ], ],
-        usuario: [user.usuario, [Validators.required, Validators.minLength(4), Validators.maxLength(20), ], ],
-        senha: [user.senha, [Validators.required, Validators.minLength(4), Validators.maxLength(20), ], ],
-        admin: [user.admin, [Validators.required, Validators.minLength(4), Validators.maxLength(20), ], ],
-        ativo: [user.ativo, [Validators.required, Validators.minLength(4), Validators.maxLength(20), ], ],
-      }
-    );
+    this.formUser = this.formBuilder.group({
+      id: [user?.id],
+      cargo: [
+        user?.cargo,
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(20),
+        ],
+      ],
+      username: [
+        user?.username,
+        [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(20),
+        ],
+      ],
+      senha: [
+        user?.senha,
+        [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(20),
+        ],
+      ],
+      admin: [
+        user?.admin,
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(20),
+        ],
+      ],
+      status: [
+        user?.status,
+        [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(20),
+        ],
+      ],
+    });
   }
 
-    // tslint:disable-next-line: typedef
-    updateForm(user) {
-      this.formUser.patchValue({
-        id: user.id,
-        nome: user.nome,
-        usuario: user.usuario,
-        senha: user.senha,
-        admin: user.admin,
-        ativo: user.ativo,
-      });
-    }
+  // tslint:disable-next-line: typedef
+  updateForm(user) {
+    this.formUser.patchValue({
+      id: user.id,
+      cargo: user.cargo,
+      username: user.username,
+      senha: user.senha,
+      admin: user.admin,
+      status: user.status,
+    });
+  }
 
-     // tslint:disable-next-line: typedef
+  // tslint:disable-next-line: typedef
   hasError(field: string) {
     return this.formUser.get(field).errors;
   }
@@ -64,15 +98,15 @@ export class UsersFormComponent implements OnInit {
       console.log('submit');
 
       // tslint:disable-next-line: prefer-const
-      let msgSuccess = 'Fila criada com sucesso!';
+      let msgSuccess = 'Usuário cadastrado com sucesso!';
       // tslint:disable-next-line: prefer-const
-      let msgError = 'Erro ao criar fila. Tente novamente!';
+      let msgError = 'Erro ao cadastrar usuário. Tente novamente!';
 
       if (this.formUser.value.id) {
         // tslint:disable-next-line: prefer-const
-        msgSuccess = 'Fila atualizada com sucesso!';
+        msgSuccess = 'Cadastro atualizado com sucesso!';
         // tslint:disable-next-line: prefer-const
-        msgError = 'Erro ao atualizar fila. Tente novamente!';
+        msgError = 'Erro ao atualizar cadastro. Tente novamente!';
       }
 
       this.service.save(this.formUser.value).subscribe(
@@ -80,8 +114,7 @@ export class UsersFormComponent implements OnInit {
           this.modal.showAlertSuccess(msgSuccess);
           this.location.back();
         },
-        (error) =>
-          this.modal.showAlertDanger(msgError)
+        (error) => this.modal.showAlertDanger(msgError)
       );
 
       /*
@@ -121,7 +154,4 @@ export class UsersFormComponent implements OnInit {
     this.location.back();
     console.log('cancel');
   }
-
-
-
 }

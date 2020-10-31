@@ -1,27 +1,32 @@
-http://localhost:3000/filas
+###
+http://localhost:3000/users
 
 ###
-GET http://localhost:3000/filas/1
+GET http://localhost:3000/users/1
 
 ###
-POST http://localhost:3000/filas HTTP/1.1
+POST http://localhost:3000/users HTTP/1.1
 Content-Type: application/json
 
 {
-  "status": "Inativo"
+  "cargo": "gerente",
+  "username": "email@gmail.com",
+  "senha": "001122",
+  "admin": "sim",
+  "status": "inativo"
 }
 
 ###
-PUT http://localhost:3000/filas/1 HTTP/1.1
+PUT http://localhost:3000/users/2 HTTP/1.1
 Content-Type: application/json
 
-  {
-    "id": 1,
-    "ordem": "fila 1",
-    "status": "Inativo",
-    "priority": "Não",
-    "rating": 3.5
-  }
+ {
+  "cargo": "teste",
+  "username": "email@gmail.com",
+  "senha": "001122",
+  "admin": "sim",
+  "status": "inativo"
+}
 
 ###
-DELETE  http://localhost:3000/filas/7
+DELETE  http://localhost:3000/users/5
