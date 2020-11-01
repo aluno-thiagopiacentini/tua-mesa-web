@@ -8,6 +8,7 @@ import { AlertModalService } from '../../shared/alert-modal.service';
 
 import { partitionArray } from '@angular/compiler/src/util';
 import { map, switchMap } from 'rxjs/operators';
+import { QueuesGenericService } from '../queues-generic.service';
 
 @Component({
   selector: 'app-queues-form',

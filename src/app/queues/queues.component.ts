@@ -6,6 +6,7 @@ import { catchError, take, switchMap } from 'rxjs/operators';
 import { Queues } from './queues';
 import { QueuesService } from './queues.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { QueuesGenericService } from './queues-generic.service';
 
 @Component({
   selector: 'app-queues',
