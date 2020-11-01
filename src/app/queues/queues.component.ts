@@ -1,8 +1,8 @@
 import { AlertModalService } from '../shared/alert-modal.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { empty, Observable, Subject } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { empty, Observable, Subject, EMPTY } from 'rxjs';
+import { catchError, take, switchMap } from 'rxjs/operators';
 import { Queues } from './queues';
 import { QueuesService } from './queues.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -83,16 +83,21 @@ export class QueuesComponent implements OnInit {
   }
 
   // tslint:disable-next-line: typedef
-  onDelet(id) {
+  onDelete(id) {
     this.queueSelected = id;
-    this.deleteModalRef = this.modalService.show(this.deleteModal, {
-      class: 'class-sm',
-    });
-  }
-
-  // tslint:disable-next-line: typedef
-  onConfirmDelete() {
-    this.service.remove(this.queueSelected.id).subscribe(
+    // this.deleteModalRef = this.modalService.show(this.deleteModal, {class: 'class-sm'});
+    const result$ = this.alertService.showConfirm(
+      'Confirmação',
+      'Tem certeza que deseja excluir a fila cadastarda?'
+    );
+    result$.asObservable()
+    .pipe(
+      take(1),
+      switchMap(
+        (result) => result ? this.service.remove(this.queueSelected.id) : EMPTY
+      )
+    )
+    .subscribe(
       (success) => {
         this.onRefresh();
         this.onDeclineDelete();
@@ -103,6 +108,12 @@ export class QueuesComponent implements OnInit {
         ),
           this.onDeclineDelete();
       }
+    );
+  }
+
+  // tslint:disable-next-line: typedef
+  onConfirmDelete() {
+    this.service.remove(this.queueSelected.id).subscribe(
     );
   }
 

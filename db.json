@@ -2,9 +2,15 @@
   "filas": [
     {
       "id": 1,
-      "name": "angular",
-      "is_priority": "ssss",
+      "name": "Teste",
+      "is_priority": "sim",
       "status": "ATIVO"
+    },
+    {
+      "id": 2,
+      "name": "fila 2",
+      "is_priority": "sim",
+      "status": "ativo"
     }
   ],
   "users": [

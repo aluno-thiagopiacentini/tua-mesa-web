@@ -1,3 +1,4 @@
+import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 import { AlertModalComponent } from './alert-modal/alert-modal.component';
 import { Injectable } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
@@ -33,5 +34,22 @@ export class AlertModalService {
   // tslint:disable-next-line: typedef
   showAlertSuccess(message: string) {
     this.showAlert(message, alertTypes.SUCCESS, 2500);
+  }
+
+  // tslint:disable-next-line: typedef
+  showConfirm(title: string, message: string, okText?: string, cancelText?: string){
+    const bsModalRef: BsModalRef = this.modalService.show(ConfirmModalComponent);
+    bsModalRef.content.title = title;
+    bsModalRef.content.message = message;
+
+    if (okText) {
+      bsModalRef.content.okText = okText;
+
+    }
+    if (cancelText) {
+      bsModalRef.content.cancelText = cancelText;
+    }
+
+    return (bsModalRef.content as ConfirmModalComponent).confirmResult;
   }
 }

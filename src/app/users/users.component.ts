@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { empty, Observable, Subject } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { EMPTY, empty, Observable, Subject } from 'rxjs';
+import { catchError, take, switchMap } from 'rxjs/operators';
 import { AlertModalService } from '../shared/alert-modal.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { UsersService } from './users.service';
@@ -30,7 +30,7 @@ export class UsersComponent implements OnInit {
     private modalService: BsModalService,
     private alertService: AlertModalService,
     private router: Router,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) {}
 
   // tslint:disable-next-line: typedef
@@ -82,27 +82,37 @@ export class UsersComponent implements OnInit {
   }
 
   // tslint:disable-next-line: typedef
-  onDelet(id) {
+  onDelete(id) {
     this.userSelected = id;
-    this.deleteModalRef = this.modalService.show(this.deleteModal, {
-      class: 'class-sm',
-    });
+    // this.deleteModalRef = this.modalService.show(this.deleteModal, {class: 'class-sm'});
+
+    const result$ = this.alertService.showConfirm(
+      'Confirmação',
+      'Tem certeza que deseja excluir o usuário?'
+    );
+    result$
+      .asObservable()
+      .pipe(
+        take(1),
+        switchMap((result) =>
+          result ? this.service.remove(this.userSelected.id) : EMPTY
+        )
+      )
+      .subscribe(
+        (success) => {
+          this.onRefresh();
+          // this.onDeclineDelete();
+        },
+        (error) => {
+          this.alertService.showAlertDanger('Erro ao excluir usuário. Atualize e tente novamente.');
+            // this.onDeclineDelete();
+        }
+      );
   }
 
   // tslint:disable-next-line: typedef
   onConfirmDelete() {
-    this.service.remove(this.userSelected.id).subscribe(
-      (success) => {
-        this.onRefresh();
-        this.onDeclineDelete();
-      },
-      (error) => {
-        this.alertService.showAlertDanger(
-          'Erro ao excluir usuário. Atualize e tente novamente.'
-        ),
-          this.onDeclineDelete();
-      }
-    );
+    this.service.remove(this.userSelected.id).subscribe();
   }
 
   // tslint:disable-next-line: typedef
