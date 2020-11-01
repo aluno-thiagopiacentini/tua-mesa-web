@@ -21,7 +21,7 @@
     <br>
     <mat-form-field appearance="outline">
       <mat-label>Insira sua senha</mat-label>
-      <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required>
+      <input matInput placeholder="Senha" [type]="hide ? 'password' : 'text'" [formControl]="password" required>
       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Senha oculta'"
         [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
