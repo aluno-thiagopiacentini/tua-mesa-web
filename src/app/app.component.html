@@ -1,24 +1,30 @@
 <!-- <nav *ngIf="mostrarMenu"  class="navbar navbar-expand-lg navbar-dark bg-dark"> -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand mr-5" routerLink="/">Tua Mesa</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+  <a class="navbar-brand mr-5" [routerLink]="['/']">Tua Mesa</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <div class="navbar-text">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="filas">Filas</a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['cadastro']">Cadastro</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="users">Usuários</a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['filas']">Filas</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="cadastro">Cadastro</a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['users']">Usuários</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['espera']">Filas de Espera</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['detalhes']">Detalhes</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
 <router-outlet></router-outlet>
-

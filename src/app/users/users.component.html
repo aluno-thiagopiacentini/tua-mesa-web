@@ -5,12 +5,12 @@
         Usuários
       </h2>
       <div>
-        <button class="btn btn-primary" [routerLink]="['new']">Adicionar</button>
+        <button class="btn btn-primary" [routerLink]="['novo-usuario']">Adicionar</button>
         <button class="btn btn-secondary" (click)="onRefresh()">Atualizar</button>
       </div>
     </div>
     <div class="card-body">
-      <table class="table table-striped text-center" *ngIf="users$ | async as users; else loadingError" >
+      <table class="table table-striped text-center" *ngIf="users$ | async as users; else loading" >
         <thead>
           <tr>
             <th scope="col">ID</th>
@@ -24,33 +24,47 @@
         </thead>
         <tbody>
           <tr *ngFor="let user of users">
-            <td>{{user.id}}</td>
-            <td>{{user.cargo}}</td>
-            <td>{{user.username}}</td>
-            <td>{{user.senha}}</td>
-            <td>{{user.admin}}</td>
-            <td>{{user.status}}</td>
-            <td colspan="2">
+            <th class="align-middle" scope="row">{{user.id}}</th>
+            <td class="align-middle">{{user.cargo}}</td>
+            <td class="align-middle">{{user.username}}</td>
+            <td class="align-middle">{{user.senha}}</td>
+            <td class="align-middle">{{user.admin}}</td>
+            <td class="align-middle">{{user.status}}</td>
+            <td class="align-middle" colspan="2">
               <span>
-                <button class="btn btn-outline-warning" (click)="onEdit(user.id)">
-                  Editar
+                <button class="btn btn-outline-primary" (click)="onEdit(user.id)">
+                  <mat-icon class="align-middle" aria-hidden="false" aria-label="Editar usuário">
+                    edit
+                  </mat-icon>
                 </button>
+              </span>
+              <span>
                 <button class="btn btn-outline-danger" (click)="onDelet(user)">
-                  Excluir
+                  <mat-icon class="align-middle" aria-hidden="false" aria-label="Excluir usuário">
+                    delete
+                  </mat-icon>
                 </button>
               </span>
             </td>
           </tr>
         </tbody>
       </table>
-      <ng-template #loadingError>
-        <div *ngIf="error$ | async; else loading">
-          Erro ao carregar a fila de clientes
-        </div>
-        <ng-template #loading>
-          <span>Carregando filas...</span>
-        </ng-template>
-      </ng-template>
+      <!-- <ng-template #loadingError>
+          <div *ngIf="error$ | async; else loading">
+            Erro ao carregar lista de usuários
+          </div> -->
+          <ng-template #loading>
+            <span>Carregando lista de usuário...</span>
+          </ng-template>
+        <!-- </ng-template> -->
     </div>
   </div>
 </div>
+
+<ng-template #deleteModal>
+  <div class="modal-body text-center">
+    <p>Confirma a exclusão do usuário?</p>
+    <button type="button" class="btn btn-default" (click)="onConfirmDelete()">Sim</button>
+    <button type="button" class="btn btn-primary" (click)="onDeclineDelete()">Não</button>
+  </div>
+</ng-template>

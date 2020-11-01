@@ -13,15 +13,16 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root',
 })
 export class UsersResolverGuard implements Resolve<Users> {
-  constructor(private service: UsersService) {}
+  constructor(private userService: UsersService) {}
 
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<Users> {
     if (route.params && route.params.id) {
-      return this.service.loadById(route.params.id);
+      return this.userService.loadById(route.params.id);
     }
+
     return of({
       id: null,
       cargo: null,

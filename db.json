@@ -10,35 +10,11 @@
   "users": [
     {
       "id": 1,
-      "cargo": "atendente",
-      "username": "ssssss@gmail.com",
+      "cargo": "Gerente",
+      "username": "ger_restaurant",
       "senha": "123456",
-      "admin": "ssssssssssssss",
-      "status": "ativo"
-    },
-    {
-      "cargo": "teste",
-      "username": "email@gmail.com",
-      "senha": "001122",
       "admin": "sim",
-      "status": "inativo",
-      "id": 2
-    },
-    {
-      "id": 3,
-      "cargo": "sssss",
-      "username": "ssssss",
-      "senha": "sssssss",
-      "admin": "sssssss",
-      "status": "sssssss"
-    },
-    {
-      "id": 4,
-      "cargo": "teste",
-      "username": "teste",
-      "senha": "testeccc",
-      "admin": "teste",
-      "status": "teste"
+      "status": "ativo"
     }
   ],
   "company": [
@@ -47,6 +23,38 @@
       "name": "restaurante",
       "phone_number": "11 97711-3293",
       "status": "01"
+    }
+  ],
+  "wainting-lines": [
+    {
+      "id": 1,
+      "name": "maria",
+      "company_id": 15,
+      "status": "Aativo",
+      "is_priority": "sim"
+    }
+  ],
+  "line_up": [
+    {
+      "id": 1,
+      "wainting_line_id": "teste",
+      "customer_id": "string",
+      "joined_at": "10/10/2020",
+      "firstcall_at": "10/10/2020",
+      "secondcall_at": "10/10/2020",
+      "completecal_at": "10/10/2020",
+      "cancelled_at": "10/10/2020",
+      "status": "ativo"
+    }
+  ],
+  "customer": [
+    {
+      "id": 15,
+      "name": "customer",
+      "phone_number": "11 97711-3293",
+      "description": "descrição",
+      "email": "eu@email.com",
+      "status": "ativo"
     }
   ]
 }

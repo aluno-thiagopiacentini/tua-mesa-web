@@ -5,12 +5,12 @@
         Filas
       </h1>
       <div>
-        <button class="btn btn-primary" [routerLink]="['new']">Adicionar</button>
+        <button class="btn btn-primary" [routerLink]="['nova-fila']">Adicionar</button>
         <button class="btn btn-secondary" (click)="onRefresh()">Atualizar</button>
       </div>
     </div>
     <div class="card-body">
-      <table class="table table-striped text-center" *ngIf="queues$ | async as queues; else loadingError">
+      <table class="table table-striped text-center" *ngIf="queues$ | async as queues; else loading">
         <thead>
           <tr>
             <th scope="col" class="text-left">ID</th>
@@ -28,25 +28,31 @@
             <td>{{queue.status }}</td>
             <td colspan="2">
               <span>
-                <button class="btn btn-outline-warning" (click)="onEdit(queue.id)">
-                  Editar
+                <button class="btn btn-outline-primary" (click)="onEdit(queue.id)">
+                  <mat-icon class="align-middle" aria-hidden="false" aria-label="Editar fila">
+                    edit
+                  </mat-icon>
                 </button>
+              </span>
+              <span>
                 <button class="btn btn-outline-danger" (click)="onDelet(queue)">
-                  Excluir
+                  <mat-icon class="align-middle" aria-hidden="false" aria-label="Excluir fila">
+                    delete
+                  </mat-icon>
                 </button>
               </span>
             </td>
           </tr>
         </tbody>
       </table>
-      <ng-template #loadingError>
+      <!-- <ng-template #loadingError>
         <div *ngIf="error$ | async; else loading">
           Erro ao carregar a fila de clientes
-        </div>
+        </div> -->
         <ng-template #loading>
           <span>Carregando filas...</span>
         </ng-template>
-      </ng-template>
+      <!-- </ng-template> -->
     </div>
   </div>
 </div>

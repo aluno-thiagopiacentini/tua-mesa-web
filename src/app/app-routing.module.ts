@@ -1,3 +1,5 @@
+import { WaintingLineDetailComponent } from './wainting-lines/wainting-line-detail/wainting-line-detail.component';
+import { WaintingLinesComponent } from './wainting-lines/wainting-lines.component';
 import { UsersResolverGuard } from './guards/users.resolver.guard';
 import { UsersComponent } from './users/users.component';
 import { RegisterComponent } from './register/register.component';
@@ -27,15 +29,25 @@ const routes: Routes = [
     //  canActivate: [AuthGuard],
   },
   {
-    path: 'users/new',
+    path: 'espera',
+    component: WaintingLinesComponent,
+    //  canActivate: [AuthGuard],
+  },
+  {
+    path: 'detalhes',
+    component: WaintingLineDetailComponent,
+    //  canActivate: [AuthGuard],
+  },
+  {
+    path: 'users/novo-usuario',
     component: UsersFormComponent,
     resolve: {
-      queue: QueuesResolverGuard,
+      user: UsersResolverGuard,
     },
     // canActivate: [AuthGuard],
   },
   {
-    path: 'filas/new',
+    path: 'filas/nova-fila',
     component: QueuesFormComponent,
     resolve: {
       queue: QueuesResolverGuard,
@@ -46,7 +58,7 @@ const routes: Routes = [
     path: 'users/editar/:id',
     component: UsersFormComponent,
     resolve: {
-      queue: UsersResolverGuard,
+      user: UsersResolverGuard,
     },
     // canActivate: [AuthGuard],
   },
@@ -57,6 +69,11 @@ const routes: Routes = [
       queue: QueuesResolverGuard,
     },
     // canActivate: [AuthGuard],
+  },
+  {
+    path: 'detalhes/:id',
+    component: WaintingLineDetailComponent,
+    //  canActivate: [AuthGuard],
   },
   { path: '**', redirectTo: '' },
 ];

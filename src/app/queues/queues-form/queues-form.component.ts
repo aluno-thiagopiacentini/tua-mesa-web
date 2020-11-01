@@ -79,14 +79,14 @@ export class QueuesFormComponent implements OnInit {
   }
 
   // tslint:disable-next-line: typedef
-  updateForm(queue) {
-    this.formQueue.patchValue({
-      id: queue.id,
-      name: queue.name,
-      is_priority: queue.is_priority,
-      status: queue.status,
-    });
-  }
+  // updateForm(queue) {
+  //   this.formQueue.patchValue({
+  //     id: queue.id,
+  //     name: queue.name,
+  //     is_priority: queue.is_priority,
+  //     status: queue.status,
+  //   });
+  // }
 
   // tslint:disable-next-line: typedef
   hasError(field: string) {

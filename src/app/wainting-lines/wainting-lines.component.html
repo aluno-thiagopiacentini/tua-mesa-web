@@ -1,0 +1,51 @@
+<div class="p-5">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h1 class="my-auto">
+        Filas de espera cadastradas
+      </h1>
+      <div>
+        <button class="btn btn-secondary" (click)="onRefresh()">Atualizar</button>
+      </div>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped text-center" *ngIf="waintingLines$ | async as waintingLines; else loadingError">
+        <thead>
+          <tr>
+            <th scope="col" class="text-left">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Prioritária</th>
+            <th scope="col">Espera</th>
+            <th scope="col">Maior tempo</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let waintingLine of waintingLines" >
+            <th scope="row" class="text-left align-middle">{{ waintingLine.id}}</th>
+            <td class="align-middle">{{ waintingLine.name }}</td>
+            <td class="align-middle">{{ waintingLine.is_priority }}</td>
+            <td class="align-middle"> Total </td>
+            <td class="align-middle">10 <span>min</span></td>
+            <td class="align-middle" colspan="2">
+              <span>
+                <button class="py-auto btn btn-outline-primary">
+                  <mat-icon class="align-middle" aria-hidden="false" aria-label="Visualizar detalhes"
+                    (click)="onDetail(waintingLine.id)">visibility</mat-icon>
+                </button>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <ng-template #loadingError>
+        <div *ngIf="error$ | async; else loading" >
+          Erro ao carregar lista de espera.
+        </div>
+        <ng-template #loading>
+          <span>Carregando filas...</span>
+        </ng-template>
+      </ng-template>
+    </div>
+  </div>
+</div>

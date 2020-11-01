@@ -3,7 +3,9 @@ import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertModalService } from './../../shared/alert-modal.service';
-import { UsersService } from './../users.service';
+import { UsersService } from '../users.service';
+import { map, switchMap } from 'rxjs/operators';
+// import { UsersService } from './../users.service';
 // import { UsersService } from './../users/users.service';
 
 @Component({
@@ -18,20 +20,36 @@ export class UsersFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private service: UsersService,
+    private usersService: UsersService,
     private modal: AlertModalService,
     private location: Location,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) {}
 
   // tslint:disable-next-line: typedef
   ngOnInit() {
+    // this.route.params.subscribe((params: any) => {
+    //   const id = params['id'];
+    //   console.log(id);
+    //   const user$ = this.usersService.loadById(id);
+    //   user$.subscribe(user => {
+    //     this.updateForm(user);
+    //   });
+    // });
+    // this.route.params
+    // .pipe(
+    //   map((params: any) => params.id),
+    //   switchMap(id => this.usersService.loadById(id))
+    // )
+    // // tslint:disable-next-line: no-shadowed-variable
+    // .subscribe(user => this.updateForm(user));
+
     const user = this.route.snapshot.data.user;
 
     this.formUser = this.formBuilder.group({
-      id: [user?.id],
+      id: [user.id],
       cargo: [
-        user?.cargo,
+        user.cargo,
         [
           Validators.required,
           Validators.minLength(5),
@@ -39,7 +57,7 @@ export class UsersFormComponent implements OnInit {
         ],
       ],
       username: [
-        user?.username,
+        user.username,
         [
           Validators.required,
           Validators.minLength(4),
@@ -47,7 +65,7 @@ export class UsersFormComponent implements OnInit {
         ],
       ],
       senha: [
-        user?.senha,
+        user.senha,
         [
           Validators.required,
           Validators.minLength(6),
@@ -55,35 +73,35 @@ export class UsersFormComponent implements OnInit {
         ],
       ],
       admin: [
-        user?.admin,
+        user.admin,
         [
           Validators.required,
           Validators.minLength(3),
-          Validators.maxLength(20),
+          Validators.maxLength(10),
         ],
       ],
       status: [
-        user?.status,
+        user.status,
         [
           Validators.required,
-          Validators.minLength(4),
-          Validators.maxLength(20),
+          Validators.minLength(3),
+          Validators.maxLength(10),
         ],
       ],
     });
   }
 
   // tslint:disable-next-line: typedef
-  updateForm(user) {
-    this.formUser.patchValue({
-      id: user.id,
-      cargo: user.cargo,
-      username: user.username,
-      senha: user.senha,
-      admin: user.admin,
-      status: user.status,
-    });
-  }
+  // updateForm(user) {
+  //   this.formUser.patchValue({
+  //     id: user.id,
+  //     cargo: user.cargo,
+  //     username: user.username,
+  //     senha: user.senha,
+  //     admin: user.admin,
+  //     status: user.status,
+  //   });
+  // }
 
   // tslint:disable-next-line: typedef
   hasError(field: string) {
@@ -109,7 +127,7 @@ export class UsersFormComponent implements OnInit {
         msgError = 'Erro ao atualizar cadastro. Tente novamente!';
       }
 
-      this.service.save(this.formUser.value).subscribe(
+      this.usersService.save(this.formUser.value).subscribe(
         (success) => {
           this.modal.showAlertSuccess(msgSuccess);
           this.location.back();

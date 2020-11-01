@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { empty, Observable, Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { AlertModalService } from './../shared/alert-modal.service';
+import { AlertModalService } from '../shared/alert-modal.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { UsersService } from './users.service';
 import { Users } from './users';
@@ -30,7 +30,7 @@ export class UsersComponent implements OnInit {
     private modalService: BsModalService,
     private alertService: AlertModalService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
 
   // tslint:disable-next-line: typedef
@@ -53,19 +53,19 @@ export class UsersComponent implements OnInit {
       })
     );
 
-    this.service
-      .listUsers()
-      .pipe(
-        // tslint:disable-next-line: deprecation
-        catchError((error) => empty())
-      )
-      .subscribe(
-        (dados) => {
-          console.log(dados);
-        }
-        // error => console.error(error),
-        // () => console.log('Observable completo')
-      );
+    // this.service
+    //   .listUsers()
+    //   .pipe(
+    //     // tslint:disable-next-line: deprecation
+    //     catchError((error) => empty())
+    //   )
+    //   .subscribe(
+    //     (dados) => {
+    //       console.log(dados);
+    //     }
+    //     // error => console.error(error),
+    //     // () => console.log('Observable completo')
+    //   );
   }
 
   // tslint:disable-next-line: typedef

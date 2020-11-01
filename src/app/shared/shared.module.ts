@@ -5,10 +5,10 @@ import { AlertModalComponent } from './alert-modal/alert-modal.component';
 
 
 @NgModule({
-  declarations: [AlertModalComponent],
   imports: [
     CommonModule
   ],
+  declarations: [AlertModalComponent],
   exports: [AlertModalComponent],
   entryComponents: [AlertModalComponent]
 })

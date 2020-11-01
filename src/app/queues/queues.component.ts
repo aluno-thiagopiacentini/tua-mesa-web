@@ -5,7 +5,6 @@ import { empty, Observable, Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Queues } from './queues';
 import { QueuesService } from './queues.service';
-import { AlertModalComponent } from '../shared/alert-modal/alert-modal.component';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -55,19 +54,19 @@ export class QueuesComponent implements OnInit {
       })
     );
 
-    this.service
-      .listQueues()
-      .pipe(
-        // tslint:disable-next-line: deprecation
-        catchError((error) => empty())
-      )
-      .subscribe(
-        (dados) => {
-          console.log(dados);
-        }
-        // error => console.error(error),
-        // () => console.log('Observable completo')
-      );
+    // this.service
+    //   .listQueues()
+    //   .pipe(
+    //     // tslint:disable-next-line: deprecation
+    //     catchError((error) => empty())
+    //   )
+    //   .subscribe(
+    //     (dados) => {
+    //       console.log(dados);
+    //     }
+    //     // error => console.error(error),
+    //     // () => console.log('Observable completo')
+    //   );
   }
 
   // tslint:disable-next-line: typedef
