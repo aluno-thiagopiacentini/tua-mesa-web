@@ -1,7 +1,6 @@
 <div class="d-flex justify-content-center mt-4">
-
   <div class="">
-  <form  [formGroup]="formLogin">
+  <form  [formGroup]="signInForm">
     <mat-form-field appearance="outline">
       <mat-label>Insira seu email</mat-label>
       <input matInput placeholder="email@example.com" [formControl]="email" required>
@@ -11,6 +10,7 @@
       <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
     <br>
+
     <mat-form-field appearance="outline">
       <mat-label>Insira seu usuário</mat-label>
       <input matInput placeholder="Username" [formControl]="username" required>
@@ -19,6 +19,7 @@
       </button>
     </mat-form-field>
     <br>
+
     <mat-form-field appearance="outline">
       <mat-label>Insira sua senha</mat-label>
       <input matInput placeholder="Senha" [type]="hide ? 'password' : 'text'" [formControl]="password" required>
@@ -30,9 +31,7 @@
     <button mat-flat-button class="btn-logar" color="primary">Entrar</button>
     <br>
     <div>
-      <mat-label class="d-flex justify-content-center">Insira sua senha?</mat-label>
-      <br>
-      <mat-label class="d-flex justify-content-center">Cadastre-se</mat-label>
+      <mat-label class="d-flex justify-content-center" [routerLink]="['signUp']">Cadastre-se</mat-label>
     </div>
   </form>
 </div>

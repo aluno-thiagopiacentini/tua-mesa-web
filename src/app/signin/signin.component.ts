@@ -8,17 +8,17 @@ import {
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-signin',
+  templateUrl: './signin.component.html',
+  styleUrls: ['./signin.component.scss'],
 })
-export class LoginComponent implements OnInit {
-  formLogin: FormGroup;
+export class SigninComponent implements OnInit {
+  signInForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute
-  ) {}
+  ) { }
   email = new FormControl('', [Validators.required, Validators.email]);
   username = new FormControl('', [Validators.required, Validators.minLength(6)]);
   password = new FormControl('', [Validators.required]);
@@ -35,4 +35,5 @@ export class LoginComponent implements OnInit {
     }
     return this.email.hasError('email') ? 'Email inválido' : '';
   }
+
 }
