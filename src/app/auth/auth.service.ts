@@ -45,7 +45,7 @@ export class AuthService {
   // }
 
   signIn(credential: Signin) {
-    return this.http.post(this.endpoint, credential, {
+    return this.http.post(this.endpoint, { email: credential.email } , {
       headers: {
       'content-type': 'application/json',
       Authorization: 'Basic ' + btoa(credential.username + ':' + credential.password)
