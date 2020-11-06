@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { UsersService } from './../users/users.service';
-import { Users } from '../users/users';
-
+import { Queues } from '../../queues/queues';
+import { QueuesService } from './../../queues/queues.service';
 import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
@@ -12,24 +11,23 @@ import { Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class UsersResolverGuard implements Resolve<Users> {
-  constructor(private userService: UsersService) {}
+export class QueuesResolverGuard implements Resolve<Queues> {
+  constructor(private service: QueuesService) {}
 
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<Users> {
+  ): Observable<Queues> {
     if (route.params && route.params.id) {
-      return this.userService.loadById(route.params.id);
+      return this.service.loadById(route.params.id);
     }
-
     return of({
       id: null,
-      cargo: null,
-      username: null,
-      senha: null,
-      admin: null,
+      name: null,
       status: null,
+      is_priority: null,
+      created_at: null,
+      updated_at: null,
     });
   }
 }

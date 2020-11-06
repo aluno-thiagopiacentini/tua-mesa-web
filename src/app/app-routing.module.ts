@@ -1,18 +1,18 @@
 import { WaintingLineDetailComponent } from './wainting-lines/wainting-line-detail/wainting-line-detail.component';
 import { WaintingLinesComponent } from './wainting-lines/wainting-lines.component';
-import { UsersResolverGuard } from './guards/users.resolver.guard';
 import { UsersComponent } from './users/users.component';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { SigninComponent } from './auth/signin/signin.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { QueuesComponent } from './queues/queues.component';
-import { QueuesResolverGuard } from './guards/queues.resolver.guard';
 import { QueuesFormComponent } from './queues/queues-form/queues-form.component';
 import { UsersFormComponent } from './users/users-form/users-form.component';
+import { UsersResolverGuard } from './auth/guards/users.resolver.guard';
+import { QueuesResolverGuard } from './auth/guards/queues.resolver.guard';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', component: SigninComponent },
   {
     path: 'filas',
     component: QueuesComponent,
@@ -25,7 +25,7 @@ const routes: Routes = [
   },
   {
     path: 'cadastro',
-    component: RegisterComponent,
+    component: SignupComponent,
     //  canActivate: [AuthGuard],
   },
   {

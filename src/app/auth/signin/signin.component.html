@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-center mt-4">
+  <div class="">
+    <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="form-group col-md">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="email@example.com"
+            formControlName="email"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md">
+          <label for="username">Usuário</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            placeholder="Usuário"
+            formControlName="username"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md">
+          <label for="password">Senha</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Senha"
+            formControlName="password"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="card my-3">
+        <button
+        class="btn btn-primary col"
+        [disabled]="signInForm.invalid"
+        type="submit"
+        >
+        Entrar
+      </button>
+    </div>
+
+      <div>
+        <label
+          class="d-flex justify-content-center"
+          [routerLink]="['signUp']"
+        >
+          Cadastre-se
+        </label>
+      </div>
+    </form>
+  </div>
+</div>
