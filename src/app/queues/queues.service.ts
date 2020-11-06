@@ -8,7 +8,7 @@ import { Queues } from './queues';
   providedIn: 'root',
 })
 export class QueuesService {
-  private readonly API = `${environment.API}filas`;
+  private readonly API = `${environment.API}/waiting-lines`;
 
   constructor(private http: HttpClient) {}
 

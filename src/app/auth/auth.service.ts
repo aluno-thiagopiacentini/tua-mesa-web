@@ -50,7 +50,9 @@ export class AuthService {
       'content-type': 'application/json',
       Authorization: 'Basic ' + btoa(credential.username + ':' + credential.password)
       },
-      })
+      withCredentials: true,
+      },
+      )
       .pipe(
         map((auth: Auth) => this.setAuth(auth)),
         catchError((response) => throwError(response.error))
