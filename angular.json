@@ -128,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "tua-mesa"
+  "defaultProject": "tua-mesa",
+  "cli": {
+    "analytics": false
+  }
 }

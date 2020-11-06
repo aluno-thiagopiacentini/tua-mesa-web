@@ -16,7 +16,7 @@ export class AuthService {
   // private usuarioAutenticado = false;
   private AUTH_KEY: string = 'auth';
   private TOKEN_KEY: string = 'token';
-  private endpoint: string = environment.API + '/user/login';
+  private endpoint: string = environment.API + '/users/login';
 
   // mostrarMenuEmitter = new EventEmitter<boolean>();
 
@@ -45,7 +45,12 @@ export class AuthService {
   // }
 
   signIn(credential: Signin) {
-    return this.http.post(this.endpoint, credential)
+    return this.http.post(this.endpoint, credential, {
+      headers: {
+      'content-type': 'application/json',
+      Authorization: 'Basic ' + btoa(credential.username + ':' + credential.password)
+      },
+      })
       .pipe(
         map((auth: Auth) => this.setAuth(auth)),
         catchError((response) => throwError(response.error))

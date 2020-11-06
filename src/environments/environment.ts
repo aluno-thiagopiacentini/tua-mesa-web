@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  API: 'http://localhost:3000',
-  // API: 'http://www.tuamesa.com.br:8080/api'
+  // API: 'http://localhost:3000',
+  API: 'http://www.tuamesa.com.br:8080/api'
 };
 
 /*
