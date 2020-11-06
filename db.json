@@ -16,8 +16,9 @@
   "users": [
     {
       "id": 1,
+      "email": "thiago@email.com",
       "cargo": "Gerente",
-      "username": "ger_restaurant",
+      "username": "thiago",
       "senha": "123456",
       "admin": "sim",
       "status": "ativo"
