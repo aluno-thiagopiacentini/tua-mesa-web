@@ -15,7 +15,7 @@ import { QueuesGenericService } from './queues-generic.service';
   preserveWhitespaces: true,
 })
 export class QueuesComponent implements OnInit {
-  // queues: Queues[];
+  queues: Queues[];
   // bsModalRef: BsModalRef;
 
   deleteModalRef: BsModalRef;
@@ -42,18 +42,10 @@ export class QueuesComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   onRefresh() {
-    this.queues$ = this.service.listQueues().pipe(
-      // .map()
-      // .tap()
-      // .switchMap()
-      catchError((error) => {
-        console.error(error);
-        // this.error$.next(true);
-        this.handleError();
-        // tslint:disable-next-line: deprecation
-        return empty();
-      })
-    );
+    this.service.listQueues().subscribe(data => {
+      console.log('Queues: ' + JSON.stringify(data.data))
+      this.queues = data.data;
+    })
 
     // this.service
     //   .listQueues()

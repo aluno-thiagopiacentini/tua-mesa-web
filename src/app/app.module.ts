@@ -45,8 +45,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { QueuesComponent } from './queues/queues.component';
-import { UsersComponent } from './users/users.component';
-import { UsersFormComponent } from './users/users-form/users-form.component';
+// import { UsersComponent } from './users/users.component';
+// import { UsersFormComponent } from './users/users-form/users-form.component';
 import { QueuesFormComponent } from './queues/queues-form/queues-form.component';
 import { WaintingLinesComponent } from './wainting-lines/wainting-lines.component';
 import { WaintingLineDetailComponent } from './wainting-lines/wainting-line-detail/wainting-line-detail.component';
@@ -57,9 +57,9 @@ import { WaintingLineDetailComponent } from './wainting-lines/wainting-line-deta
     SigninComponent,
     SignupComponent,
     QueuesComponent,
-    UsersComponent,
+    // UsersComponent,
     QueuesFormComponent,
-    UsersFormComponent,
+    // UsersFormComponent,
     WaintingLinesComponent,
     WaintingLineDetailComponent,
   ],

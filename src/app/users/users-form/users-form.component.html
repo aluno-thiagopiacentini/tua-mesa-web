@@ -3,176 +3,115 @@
     <form class="needs-validation" novalidate [formGroup]="formUser">
       <div class="form-row">
         <div class="col-md mb-3">
-          <label for="cargo">Cargo</label>
-          <input
-            type="text"
-            class="form-control is-valid"
-            id="cargo"
-            placeholder="Cargo"
-            formControlName="cargo"
-            [ngClass]="{ 'is-invalid': submitted && hasError('cargo') }"
-          />
-          <div
-            class="invalid-feedback"
-            *ngIf="hasError('cargo') && hasError('cargo')['required']"
-          >
-            Insira o cargo
-          </div>
-
-          <div
-            class="invalid-feedback"
-            *ngIf="hasError('cargo') && hasError('cargo')['minlength']"
-          >
-            Cargo precisa ter no mínimo
-            {{ hasError("cargo")["minlength"].requiredLength }} caracteres.
-          </div>
-
-          <div
-            class="invalid-feedback"
-            *ngIf="hasError('cargo') && hasError('cargo')['maxlength']"
-          >
-            cargo precisa ter no máximo
-            {{ hasError("cargo")["maxlength"].requiredLength }} caracteres.
-          </div>
-        </div>
-
-        <div class="col-md mb-3">
           <label for="username">Usuário</label>
-          <input
-            type="text"
-            class="form-control is-valid"
-            id="username"
-            placeholder="usuário"
-            formControlName="username"
-            [ngClass]="{ 'is-invalid': submitted && hasError('username') }"
-          />
-          <div
-            class="invalid-feedback"
-            *ngIf="hasError('username') && hasError('username')['required']"
-          >
+          <input type="text" class="form-control is-valid" id="username" placeholder="usuário"
+            formControlName="username"  />
+          <!-- <div class="invalid-feedback" *ngIf="hasError('username') && hasError('username')['required']">
             Informe o usuário
           </div>
-          <div
-            class="invalid-feedback"
-            *ngIf="hasError('username') && hasError('username')['minlength']"
-          >
+          <div class="invalid-feedback" *ngIf="hasError('username') && hasError('username')['minlength']">
             Usuário precisa ter no mínimo
             {{ hasError("username")["minlength"].requiredLength }} caracteres.
           </div>
-          <div
-            class="invalid-feedback"
-            *ngIf="hasError('username') && hasError('username')['maxlength']"
-          >
+          <div class="invalid-feedback" *ngIf="hasError('username') && hasError('username')['maxlength']">
             Usuário precisa ter no máximo
             {{ hasError("priority")["maxlength"].requiredLength }} caracteres.
-          </div>
+          </div> -->
         </div>
 
         <div class="col-md mb-3">
-          <label for="senha">Senha</label>
-          <input
-            type="text"
-            class="form-control is-valid"
-            id="senha"
-            placeholder="Informe o senha"
-            formControlName="senha"
-            [ngClass]="{ 'is-invalid': submitted && hasError('senha') }"
-          />
-          <div
-            class="invalid-feedback"
-            *ngIf="hasError('senha') && hasError('senha')['required']"
-          >
+          <label for="email">Email</label>
+          <input type="email" class="form-control is-valid" id="email" placeholder="email@mail.com"
+            formControlName="email" />
+          <!-- <div class="invalid-feedback" *ngIf="hasError('email') && hasError('email')['required']">
+            Informe o email
+          </div>
+          <div class="invalid-feedback" *ngIf="hasError('email') && hasError('email')['minlength']">
+            Email precisa ter no mínimo
+            {{ hasError("email")["minlength"].requiredLength }} caracteres.
+          </div>
+          <div class="invalid-feedback" *ngIf="hasError('email') && hasError('email')['maxlength']">
+            Email precisa ter no máximo
+            {{ hasError("email")["maxlength"].requiredLength }} caracteres.
+          </div> -->
+        </div>
+
+        <div class="col-md mb-3">
+          <label for="password">Senha</label>
+          <input type="text" class="form-control is-valid" id="password" placeholder="Informe o senha"
+            formControlName="password" />
+          <!-- <div class="invalid-feedback" *ngIf="hasError('password') && hasError('password')['required']">
             Informe a senha
           </div>
-          <div
-            class="invalid-feedback"
-            *ngIf="hasError('senha') && hasError('senha')['minlength']"
-          >
+          <div class="invalid-feedback" *ngIf="hasError('password') && hasError('password')['minlength']">
             Senha precisa ter no mínimo
-            {{ hasError("senha")["minlength"].requiredLength }} caracteres.
+            {{ hasError("password")["minlength"].requiredLength }} caracteres.
           </div>
-          <div
-            class="invalid-feedback"
-            *ngIf="hasError('senha') && hasError('senha')['maxlength']"
-          >
+          <div class="invalid-feedback" *ngIf="hasError('password') && hasError('password')['maxlength']">
             Senha precisa ter no máximo
-            {{ hasError("senha")["maxlength"].requiredLength }} caracteres.
-          </div>
+            {{ hasError("password")["maxlength"].requiredLength }} caracteres.
+          </div> -->
         </div>
 
         <div class="col-md mb-3">
-          <label for="admin">Admin</label>
-          <input
-            type="text"
-            class="form-control is-valid"
-            id="admin"
-            placeholder="Informe o admin"
-            formControlName="admin"
-            [ngClass]="{ 'is-invalid': submitted && hasError('admin') }"
-          />
-          <div
-            class="invalid-feedback"
-            *ngIf="hasError('admin') && hasError('admin')['required']"
-          >
+          <label for="role_id">Perfil</label>
+          <input type="text" class="form-control is-valid" id="role_id" placeholder="Informe o admin"
+            formControlName="role_id" />
+          <!-- <div class="invalid-feedback" *ngIf="hasError('role_id') && hasError('role_id')['required']">
             Informe o admin
           </div>
-          <div
-            class="invalid-feedback"
-            *ngIf="hasError('admin') && hasError('admin')['minlength']"
-          >
+          <div class="invalid-feedback" *ngIf="hasError('role_id') && hasError('role_id')['minlength']">
             Admin precisa ter no mínimo
-            {{ hasError("admin")["minlength"].requiredLength }} caracteres.
+            {{ hasError("role_id")["minlength"].requiredLength }} caracteres.
           </div>
-          <div
-            class="invalid-feedback"
-            *ngIf="hasError('admin') && hasError('admin')['maxlength']"
-          >
+          <div class="invalid-feedback" *ngIf="hasError('role_id') && hasError('role_id')['maxlength']">
             Admin precisa ter no máximo
-            {{ hasError("admin")["maxlength"].requiredLength }} caracteres.
-          </div>
+            {{ hasError("role_id")["maxlength"].requiredLength }} caracteres.
+          </div> -->
         </div>
 
         <div class="col-md mb-3">
-          <label for="status">Ativo</label>
-          <input
-            type="text"
-            class="form-control is-valid"
-            id="status"
-            placeholder="Sim ou não"
-            formControlName="status"
-            [ngClass]="{ 'is-invalid': submitted && hasError('status') }"
-          />
-          <div
-            class="invalid-feedback"
-            *ngIf="hasError('status') && hasError('status')['required']"
-          >
+          <label for="status">Status</label>
+          <input type="text" class="form-control is-valid" id="status" placeholder="Sim ou não" formControlName="status"
+            />
+          <!-- <div class="invalid-feedback" *ngIf="hasError('status') && hasError('status')['required']">
             Sim ou não
           </div>
-          <div
-            class="invalid-feedback"
-            *ngIf="hasError('status') && hasError('status')['minlength']"
-          >
+          <div class="invalid-feedback" *ngIf="hasError('status') && hasError('status')['minlength']">
             Precisa ter no mínimo
             {{ hasError("status")["minlength"].requiredLength }} caracteres.
           </div>
-          <div
-            class="invalid-feedback"
-            *ngIf="hasError('status') && hasError('status')['maxlength']"
-          >
+          <div class="invalid-feedback" *ngIf="hasError('status') && hasError('status')['maxlength']">
             Precisa ter no máximo
             {{ hasError("status")["maxlength"].requiredLength }} caracteres.
-          </div>
+          </div> -->
         </div>
-      </div>
 
-      <div>
-        <button type="submit" class="btn btn-primary" (click)="onSubmit()">
-          Salvar
-        </button>
-        <button type="button" class="btn btn-secondary" (click)="onCancel()">
-          Cancelar
-        </button>
-      </div>
+        <div class="col-md mb-3">
+          <label for="phone_number">Telefone</label>
+          <input type="text" class="form-control is-valid" id="phone_number" placeholder="XX 91234-5678"
+            formControlName="phone_number" />
+          <!-- <div class="invalid-feedback" *ngIf="hasError('phone_number') && hasError('phone_number')['required']">
+            Sim ou não
+          </div>
+          <div class="invalid-feedback" *ngIf="hasError('phone_number') && hasError('phone_number')['minlength']">
+            Precisa ter no mínimo
+            {{ hasError("phone_number")["minlength"].requiredLength }} caracteres.
+          </div>
+          <div class="invalid-feedback" *ngIf="hasError('phone_number') && hasError('phone_number')['maxlength']">
+            Precisa ter no máximo
+            {{ hasError("phone_number")["maxlength"].requiredLength }} caracteres.
+          </div> -->
+        </div>
+
+        <div>
+          <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+            Salvar
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="onCancel()">
+            Cancelar
+          </button>
+        </div>
     </form>
   </div>
 </div>

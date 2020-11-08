@@ -8,7 +8,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { QueuesComponent } from './queues/queues.component';
 import { QueuesFormComponent } from './queues/queues-form/queues-form.component';
 import { UsersFormComponent } from './users/users-form/users-form.component';
-import { UsersResolverGuard } from './auth/guards/users.resolver.guard';
+// import { UsersResolverGuard } from './auth/guards/users.resolver.guard';
 import { QueuesResolverGuard } from './auth/guards/queues.resolver.guard';
 
 const routes: Routes = [
@@ -41,9 +41,9 @@ const routes: Routes = [
   {
     path: 'users/novo-usuario',
     component: UsersFormComponent,
-    resolve: {
-      user: UsersResolverGuard,
-    },
+    // resolve: {
+    //   user: UsersResolverGuard,
+    // },
     // canActivate: [AuthGuard],
   },
   {
@@ -54,14 +54,14 @@ const routes: Routes = [
     },
     // canActivate: [AuthGuard],
   },
-  {
-    path: 'users/editar/:id',
-    component: UsersFormComponent,
-    resolve: {
-      user: UsersResolverGuard,
-    },
-    // canActivate: [AuthGuard],
-  },
+  // {
+  //   path: 'users/editar/:id',
+  //   component: UsersFormComponent,
+  //   // resolve: {
+  //   //   user: UsersResolverGuard,
+  //   // },
+  //   // canActivate: [AuthGuard],
+  // },
   {
     path: 'filas/editar/:id',
     component: QueuesFormComponent,

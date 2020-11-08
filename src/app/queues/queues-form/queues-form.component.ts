@@ -57,25 +57,21 @@ export class QueuesFormComponent implements OnInit {
     const queue = this.route.snapshot.data.queue;
 
     this.formQueue = this.formBuilder.group({
-      id: [queue.id],
-      name: [ queue.name, [ Validators.required, Validators.minLength(4), Validators.maxLength(20), ],
+      name: [ 
+        queue.name,
+        [ Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(255),
+        ],
       ],
       is_priority: [
         queue.is_priority,
         [
           Validators.required,
           Validators.minLength(3),
-          Validators.maxLength(20),
-        ],
-      ],
-      status: [
-        queue.status,
-        [
-          Validators.required,
-          Validators.minLength(5),
-          Validators.maxLength(20),
-        ],
-      ],
+          Validators.maxLength(5)
+        ]
+      ]
     });
   }
 

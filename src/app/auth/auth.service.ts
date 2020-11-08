@@ -1,13 +1,13 @@
 import { Payload } from './interfaces/auth';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Signin } from './interfaces/signin';
+import { Signup } from './interfaces/signup';
 import { Auth } from './interfaces/auth';
 import { throwError } from 'rxjs';
-// import { Usuario } from './usuario';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +16,7 @@ export class AuthService {
   // private usuarioAutenticado = false;
   private AUTH_KEY: string = 'auth';
   private TOKEN_KEY: string = 'token';
-  private endpoint: string = environment.API + '/users/login';
+  private endpoint: string = environment.API + '/users';
 
   // mostrarMenuEmitter = new EventEmitter<boolean>();
 
@@ -45,7 +45,7 @@ export class AuthService {
   // }
 
   signIn(credential: Signin) {
-    return this.http.post(this.endpoint, { email: credential.email } , {
+    return this.http.post(this.endpoint + '/login', { email: credential.email } , {
       headers: {
       'content-type': 'application/json',
       Authorization: 'Basic ' + btoa(credential.username + ':' + credential.password)
@@ -58,12 +58,30 @@ export class AuthService {
         catchError((response) => throwError(response.error))
       );
   }
-  SignUp(data: Auth) {
-    return this.http.post(this.endpoint + '/signup', data)
-      .pipe(
-        catchError((response) => throwError(response.error))
-      );
+
+  SignUp(request: Signup) {
+    return this.createCompany(request)
+    .then( (response) => {
+      console.log('Response Company Created : ' + JSON.stringify(response.data.id));
+      const user = this.http.post(this.endpoint, {
+                              "username": request.username,
+                              "password": request.password,
+                              "email": request.email,
+                              "phone_number": request.phone_number,
+                              "company_id": JSON.stringify(response.data.id),
+                              "role_id": 1
+                          }).toPromise();
+      user.then((data) => { console.log('User Created !' + JSON.stringify(data.data)); });
+    });
   }
+
+  createCompany(data: Signup) {
+    return this.http.post('http://www.tuamesa.com.br:8080/api/companies',
+                          { name: data.name , phone_number: data.phone_number} )
+                          .toPromise();
+
+  }
+
   setAuth(auth: Auth) {
     if (!auth) return;
     this.auth = auth.payload;

@@ -9,10 +9,9 @@
       </div>
     </div>
     <div class="card-body">
-      <table class="table table-striped text-center" *ngIf="waintingLines$ | async as waintingLines; else loadingError">
+      <table class="table table-striped text-center">
         <thead>
           <tr>
-            <th scope="col" class="text-left">ID</th>
             <th scope="col">Nome</th>
             <th scope="col">Prioritária</th>
             <th scope="col">Espera</th>
@@ -22,7 +21,6 @@
         </thead>
         <tbody>
           <tr *ngFor="let waintingLine of waintingLines" >
-            <th scope="row" class="text-left align-middle">{{ waintingLine.id}}</th>
             <td class="align-middle">{{ waintingLine.name }}</td>
             <td class="align-middle">{{ waintingLine.is_priority }}</td>
             <td class="align-middle"> Total </td>

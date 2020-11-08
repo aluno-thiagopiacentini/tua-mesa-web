@@ -5,8 +5,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertModalService } from './../../shared/alert-modal.service';
 import { UsersService } from '../users.service';
 import { map, switchMap } from 'rxjs/operators';
-// import { UsersService } from './../users.service';
-// import { UsersService } from './../users/users.service';
 
 @Component({
   selector: 'app-users-form',
@@ -44,51 +42,66 @@ export class UsersFormComponent implements OnInit {
     // // tslint:disable-next-line: no-shadowed-variable
     // .subscribe(user => this.updateForm(user));
 
-    const user = this.route.snapshot.data.user;
+    // const user = this.route.snapshot.data.user;
 
     this.formUser = this.formBuilder.group({
-      id: [user.id],
-      cargo: [
-        user.cargo,
-        [
-          Validators.required,
-          Validators.minLength(5),
-          Validators.maxLength(20),
-        ],
-      ],
-      username: [
-        user.username,
-        [
-          Validators.required,
-          Validators.minLength(4),
-          Validators.maxLength(20),
-        ],
-      ],
-      senha: [
-        user.senha,
-        [
-          Validators.required,
-          Validators.minLength(6),
-          Validators.maxLength(20),
-        ],
-      ],
-      admin: [
-        user.admin,
-        [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(10),
-        ],
-      ],
-      status: [
-        user.status,
-        [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(10),
-        ],
-      ],
+      email: ['', Validators.required],
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+      status: ['', Validators.required],
+      phone_number:  ['', Validators.required],
+      role_id: ['', Validators.required],
     });
+    // this.formUser = this.formBuilder.group({
+    //   username: [
+    //     user.username,
+    //     [
+    //       Validators.required,
+    //       Validators.minLength(4),
+    //       Validators.maxLength(20),
+    //     ],
+    //   ],
+    //   password: [
+    //     user.password,
+    //     [
+    //       Validators.required,
+    //       Validators.minLength(6),
+    //       Validators.maxLength(20),
+    //     ],
+    //   ],
+    //   phone_number: [
+    //     user.phone_number,
+    //     [
+    //       Validators.required,
+    //       Validators.minLength(8),
+    //       Validators.maxLength(20),
+    //     ],
+    //   ],
+    //   email: [
+    //     user.email,
+    //     [
+    //       Validators.required,
+    //       Validators.minLength(8),
+    //       Validators.maxLength(20),
+    //     ],
+    //   ],
+    //   status: [
+    //     user.status,
+    //     [
+    //       Validators.required,
+    //       Validators.minLength(8),
+    //       Validators.maxLength(20),
+    //     ],
+    //   ],
+    //   role_id: [
+    //     user.role_id,
+    //     [
+    //       Validators.required,
+    //       Validators.minLength(1),
+    //       Validators.maxLength(20),
+    //     ],
+    //   ]
+    // });
   }
 
   // tslint:disable-next-line: typedef

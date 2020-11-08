@@ -14,6 +14,7 @@ import { Users } from './users';
   preserveWhitespaces: true,
 })
 export class UsersComponent implements OnInit {
+  
   // users: Users[];
   // bsModalRef: BsModalRef;
 
@@ -35,7 +36,6 @@ export class UsersComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   ngOnInit() {
-    // this.service.list().subscribe(dados => this.users = dados);
     this.onRefresh();
   }
   // tslint:disable-next-line: typedef

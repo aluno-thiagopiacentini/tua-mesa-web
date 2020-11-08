@@ -9,13 +9,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class WaintingLinesService {
   // private readonly API = 'http://localhost:3000/wainting-lines';
-  private readonly API = `${environment.API}wainting-lines`;
+  private readonly API = `${environment.API}/waiting-lines`;
 
   constructor(private http: HttpClient) {}
 
   // tslint:disable-next-line: typedef
   listWaintingLines() {
-    return this.http.get<WaintingLine[]>(this.API)
+    return this.http.get<WaintingLine[]>(this.API, {withCredentials: true})
     .pipe(
       delay(2000),
       tap(console.log)

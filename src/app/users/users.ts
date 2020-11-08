@@ -1,8 +1,9 @@
 export interface Users {
   id: number;
-  cargo: string;
   username: string;
-  senha: string;
-  admin: string;
+  password: string;
+  email: string;
+  role_id: string;
   status: string;
+  phone_number: string;
 }

@@ -9,14 +9,14 @@ import { Users } from './users';
   providedIn: 'root',
 })
 export class UsersService {
-  private readonly API = `${environment.API}users`;
+  private readonly API = `${environment.API}/users`;
 
   constructor(private http: HttpClient) {}
 
   // tslint:disable-next-line: typedef
   listUsers() {
     return this.http
-      .get<Users[]>(this.API, { withCredentials: false })
+      .get<Users[]>(this.API, { withCredentials: true })
       .pipe(delay(1000), tap(console.log));
   }
 
@@ -27,6 +27,7 @@ export class UsersService {
 
   // tslint:disable-next-line: typedef
   private createUsers(user) {
+    console.log(user);
     return this.http.post(this.API, user).pipe(take(1));
   }
 

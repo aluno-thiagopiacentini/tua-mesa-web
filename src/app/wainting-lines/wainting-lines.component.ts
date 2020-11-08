@@ -1,7 +1,7 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertModalService } from './../shared/alert-modal.service';
 import { AlertModalComponent } from '../shared/alert-modal/alert-modal.component';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { Observable, empty, Subject } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { WaintingLine } from './wainting-line';
@@ -15,7 +15,7 @@ import { WaintingLinesService } from './wainting-lines.service';
   styleUrls: ['./wainting-lines.component.scss'],
 })
 export class WaintingLinesComponent implements OnInit {
-  // waintingLines: WaintingLine[];
+  waintingLines: WaintingLine[];
 
   bsModalRef: BsModalRef;
 
@@ -27,27 +27,31 @@ export class WaintingLinesComponent implements OnInit {
     private serviceWaintingLines: WaintingLinesService,
     // private modalService: BsModalService,
     private alertService: AlertModalService,
-    private router: Router,
-    private route: ActivatedRoute,
+    private route: Router,
+    // private route: ActivatedRoute,
     ) {}
 
   ngOnInit(): void {
-    // this.serviceWaintingLines.listWaintingLines()
-    //   .subscribe(dados => this.waintingLines = dados);
     this.onRefresh();
   }
 
   // tslint:disable-next-line: typedef
   onRefresh() {
-    this.waintingLines$ = this.serviceWaintingLines.listWaintingLines().pipe(
-      catchError((error) => {
-        console.error(error);
-        // this.error$.next(true);
-        this.handleError();
-        // tslint:disable-next-line: deprecation
-        return empty();
-      })
-    );
+    this.serviceWaintingLines
+    .listWaintingLines()
+    .subscribe(data => {
+        this.waintingLines = data.data;
+      });
+    // this.waintingLines$ = this.serviceWaintingLines.listWaintingLines()
+    //                       .pipe(
+    //                           catchError((error) => {
+    //                             console.error(error);
+    //                             // this.error$.next(true);
+    //                             this.handleError();
+    //                             // tslint:disable-next-line: deprecation
+    //                             return empty();
+    //                           })
+    //                         );
 
     // this.serviceWaintingLines
     //   .listWaintingLines()
@@ -68,7 +72,8 @@ export class WaintingLinesComponent implements OnInit {
 
     // tslint:disable-next-line: typedef
     onDetail(id) {
-      console.log('detalhes');
+      console.log('detalhes/'+id);
+      this.route.navigate(['detalhes/'+id]);
     }
 
 }
