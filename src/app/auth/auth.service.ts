@@ -9,10 +9,19 @@ import { Signup } from './interfaces/signup';
 import { Auth } from './interfaces/auth';
 import { throwError } from 'rxjs';
 
+interface Company {
+  id: number;
+}
+interface CompanyResponse {
+  data: Company;
+}
+
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+
   // private usuarioAutenticado = false;
   private AUTH_KEY: string = 'auth';
   private TOKEN_KEY: string = 'token';
@@ -59,19 +68,21 @@ export class AuthService {
       );
   }
 
+
   SignUp(request: Signup) {
     return this.createCompany(request)
-    .then( (response) => {
-      console.log('Response Company Created : ' + JSON.stringify(response.data.id));
+    .then( (data: CompanyResponse) => {
+      const { id }  = data.data;
+      console.log('Response Company Created : ' + JSON.stringify(id));
       const user = this.http.post(this.endpoint, {
                               "username": request.username,
                               "password": request.password,
                               "email": request.email,
                               "phone_number": request.phone_number,
-                              "company_id": JSON.stringify(response.data.id),
+                              "company_id": JSON.stringify(id),
                               "role_id": 1
                           }).toPromise();
-      user.then((data) => { console.log('User Created !' + JSON.stringify(data.data)); });
+      user.then((CustomerData) => { console.log('User Created !' + JSON.stringify(CustomerData)); });
     });
   }
 
