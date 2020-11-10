@@ -75,13 +75,13 @@ export class AuthService {
       const { id }  = data.data;
       console.log('Response Company Created : ' + JSON.stringify(id));
       const user = this.http.post(this.endpoint, {
-                              "username": request.username,
-                              "password": request.password,
-                              "email": request.email,
-                              "phone_number": request.phone_number,
-                              "company_id": JSON.stringify(id),
-                              "role_id": 1
-                          }).toPromise();
+                              username: request.username,
+                              password: request.password,
+                              email: request.email,
+                              phone_number: request.phone_number,
+                              company_id: JSON.stringify(id),
+                              role_id: 1
+                          }, {withCredentials: true}).toPromise();
       user.then((CustomerData) => { console.log('User Created !' + JSON.stringify(CustomerData)); });
     });
   }
