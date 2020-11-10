@@ -10,7 +10,7 @@ import { WaintingLinesDetail } from './wainting-lines-detail';
   preserveWhitespaces: true,
 })
 export class WaintingLineDetailComponent implements OnInit {
-  waintingLinesDetail: WaintingLinesDetail[];
+  waintingLinesDetail: WaintingLinesDetail;
 
   constructor(
     private service: WaintingLinesDetailService,
@@ -24,8 +24,8 @@ export class WaintingLineDetailComponent implements OnInit {
 
   onRefresh() {
     this.service.listWaintingLines().subscribe( data => {
-      console.log('Detail: ' + JSON.stringify(data.data));
-      this.waintingLinesDetail = data.data;
+      console.log('Detail: ' + JSON.stringify(data));
+      this.waintingLinesDetail = data;
     });
   }
 

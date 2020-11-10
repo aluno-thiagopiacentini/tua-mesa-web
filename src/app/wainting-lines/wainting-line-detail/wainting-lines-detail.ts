@@ -1,10 +1,23 @@
-export interface WaintingLinesDetail {
+interface WaintingLines {
+  cancelled_at: Date;
+  completed_at: Date;
+  customer_id: number;
+  customer_name: string;
+  customer_phone_number: string;
+  first_call_at: Date;
   id: number;
-  name: string;
-  status: boolean;
-  is_priority: boolean;
-  created_at: Date;
-  updated_at: Date;
-  company_id: number;
+  joined_at: Date;
+  second_call_at: Date;
+  status: number;
+  waiting_line_id: number;
 }
 
+interface Summary {
+    max_waiting_minutes: number;
+    qty_total: number;
+}
+
+export interface WaintingLinesDetail {
+  data: WaintingLines[];
+  summary: Summary;
+}
