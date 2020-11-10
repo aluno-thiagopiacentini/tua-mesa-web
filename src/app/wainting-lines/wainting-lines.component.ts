@@ -37,9 +37,8 @@ export class WaintingLinesComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   onRefresh() {
-    this.serviceWaintingLines
-    .listWaintingLines()
-    .subscribe(data => {
+    this.serviceWaintingLines.listWaintingLines().subscribe(data => {
+      console.log('Wainting Lines: ' + JSON.stringify(data.data));
         this.waintingLines = data.data;
       });
     // this.waintingLines$ = this.serviceWaintingLines.listWaintingLines()
