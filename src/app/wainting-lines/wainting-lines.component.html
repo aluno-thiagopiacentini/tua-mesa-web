@@ -23,8 +23,8 @@
           <tr *ngFor="let waintingLine of waintingLines" >
             <td class="align-middle">{{ waintingLine.name }}</td>
             <td class="align-middle">{{ waintingLine.is_priority }}</td>
-            <td class="align-middle"> {{waintingLines?.length}} </td>
-            <td class="align-middle">10 <span>min</span></td>
+            <td class="align-middle"> {{waintingLine.qty_total }} </td>
+            <td class="align-middle"><span>min</span></td>
             <td class="align-middle" colspan="2">
               <span>
                 <button class="py-auto btn btn-outline-primary">

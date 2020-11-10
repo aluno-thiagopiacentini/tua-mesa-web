@@ -6,4 +6,5 @@ export interface WaintingLine {
   is_priority: string;
   created_at: Date;
   updated_at: Date;
+  qty_total: number;
 }
