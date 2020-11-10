@@ -1,4 +1,4 @@
-<!-- <div class="p-5">
+<div class="p-5">
   <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
       <h1 class="my-auto">
@@ -18,10 +18,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row" class="text-left">1</th>
-            <td>Maria</td>
-            <td>11 97711-3293</td>
+          <tr *ngFor="let detail of waintingLinesDetail; let i = index">
+            <th scope="row" class="text-left">{{ i + 1}}</th>
+            <td>{{ detail.name }}</td>
+            <td>{{ detail.name }}</td>
             <td>45<span>min</span></td>
             <td>Concluído</td>
             <td>
@@ -47,6 +47,7 @@
         <button class="btn btn-primary" [routerLink]="['nova-espera']">Adicionar</button>
         <button class="btn btn-success">Chamar próximo</button>
       </div>
+      <span> {{ waintingLinesDetail | json }}</span>
     </div>
   </div>
-</div> -->
+</div>

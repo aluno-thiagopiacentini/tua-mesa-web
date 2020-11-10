@@ -1,4 +1,7 @@
+import { ActivatedRoute, Router } from '@angular/router';
+import { WaintingLinesDetailService } from './wainting-lines-detail.service';
 import { Component, OnInit } from '@angular/core';
+import { WaintingLinesDetail } from './wainting-lines-detail';
 
 @Component({
   selector: 'app-wainting-line-detail',
@@ -7,10 +10,23 @@ import { Component, OnInit } from '@angular/core';
   preserveWhitespaces: true,
 })
 export class WaintingLineDetailComponent implements OnInit {
+  waintingLinesDetail: WaintingLinesDetail[];
 
-  constructor() { }
+  constructor(
+    private service: WaintingLinesDetailService,
+    private router: Router,
+    private toute: ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
+    this.onRefresh();
+  }
+
+  onRefresh() {
+    this.service.listWaintingLines().subscribe( data => {
+      console.log('Detail: ' + JSON.stringify(data.data));
+      this.waintingLinesDetail = data.data;
+    });
   }
 
 }
