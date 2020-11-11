@@ -26,7 +26,7 @@ export class QueuesFormComponent implements OnInit {
     private modal: AlertModalService,
     private location: Location,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   // tslint:disable-next-line: typedef
   ngOnInit() {
@@ -57,11 +57,11 @@ export class QueuesFormComponent implements OnInit {
     const queue = this.route.snapshot.data.queue;
 
     this.formQueue = this.formBuilder.group({
-      name: [ 
+      name: [
         queue.name,
-        [ Validators.required,
-          Validators.minLength(4),
-          Validators.maxLength(255),
+        [Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(255),
         ],
       ],
       is_priority: [

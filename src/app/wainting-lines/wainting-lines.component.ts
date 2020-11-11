@@ -23,12 +23,15 @@ export class WaintingLinesComponent implements OnInit {
   // tslint:disable-next-line: new-parens
   error$ = new Subject<boolean>();
 
+  waintingSelected: WaintingLine;
+
+
   constructor(
     private serviceWaintingLines: WaintingLinesService,
     // private modalService: BsModalService,
     private alertService: AlertModalService,
-    private route: Router,
-    // private route: ActivatedRoute,
+    private router: Router,
+    private route: ActivatedRoute,
     ) {}
 
   ngOnInit(): void {
@@ -71,8 +74,8 @@ export class WaintingLinesComponent implements OnInit {
 
     // tslint:disable-next-line: typedef
     onDetail(id) {
-      console.log('detalhes/'+id);
-      this.route.navigate(['detalhes/'+id]);
+      console.log('detalhes', id);
+      this.router.navigate(['detalhes', id]);
     }
 
 }

@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
       <h1 class="my-auto">
-        Fila de espera "Número da fila"
+        Fila de espera
       </h1>
     </div>
     <div class="card-body">
@@ -44,10 +44,9 @@
         </tbody>
       </table>
       <div class="d-flex justify-content-between">
-        <button class="btn btn-primary" [routerLink]="['nova-espera']">Adicionar</button>
+        <button class="btn btn-primary" [routerLink]="['/nova-espera']">Adicionar</button>
         <button class="btn btn-success">Chamar próximo</button>
       </div>
-      <!-- <span> {{ waintingLinesDetail | json }}</span> -->
     </div>
   </div>
 </div>
