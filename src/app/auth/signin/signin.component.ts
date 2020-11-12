@@ -32,7 +32,7 @@ export class SigninComponent {
     this.authService.signIn(
       this.signInForm.value
     ).subscribe(
-      (response) => this.route.navigate(['filas']),
+      (response) => this.route.navigate(['espera']),
       (error) => {
         this.signInForm.get('password').reset();
       }

@@ -62,7 +62,7 @@ export class AuthService {
       withCredentials: true,
       },
       )
-      .pipe(delay(1000),
+      .pipe(delay(2000),
         map((auth: Auth) => this.setAuth(auth)),
         catchError((response) => throwError(response.error))
       );
