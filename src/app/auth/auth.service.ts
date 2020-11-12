@@ -1,5 +1,5 @@
 import { Payload } from './interfaces/auth';
-import { map, catchError, tap } from 'rxjs/operators';
+import { map, catchError, tap, take, delay } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
@@ -22,12 +22,12 @@ interface CompanyResponse {
 })
 export class AuthService {
 
-  // private usuarioAutenticado = false;
+  private usuarioAutenticado = false;
   private AUTH_KEY: string = 'auth';
   private TOKEN_KEY: string = 'token';
   private endpoint: string = environment.API + '/users';
 
-  // mostrarMenuEmitter = new EventEmitter<boolean>();
+  mostrarMenuEmitter = new EventEmitter<boolean>();
 
   constructor(
     private router: Router,
@@ -62,7 +62,7 @@ export class AuthService {
       withCredentials: true,
       },
       )
-      .pipe(
+      .pipe(delay(1000),
         map((auth: Auth) => this.setAuth(auth)),
         catchError((response) => throwError(response.error))
       );
@@ -87,7 +87,7 @@ export class AuthService {
   }
 
   createCompany(data: Signup) {
-    return this.http.post('http://www.tuamesa.com.br:8080/api/companies',
+    return this.http.post(environment.API + '/companies',
                           { name: data.name , phone_number: data.phone_number} )
                           .toPromise();
 
@@ -124,7 +124,8 @@ export class AuthService {
     window.localStorage.removeItem(this.TOKEN_KEY);
   }
 
-
-
+  isLogged() {
+    return this.http.get(`${this.endpoint}/currentuser`, { withCredentials: true }).pipe(take(1));
+  }
 
 }

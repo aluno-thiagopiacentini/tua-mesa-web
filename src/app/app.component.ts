@@ -9,16 +9,16 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'tua-mesa';
 
-  // mostrarMenu = false;
+  // mostrarMenu = true;
 
   constructor(private authService: AuthService) {
 
   }
 
-  // // tslint:disable-next-line: use-lifecycle-interface
-  // ngOnInit(): void {
-  //   this.authService.mostrarMenuEmitter.subscribe(
-  //     mostrar => this.mostrarMenu = mostrar
-  //   );
-  // }
+  // tslint:disable-next-line: use-lifecycle-interface
+  ngOnInit(): void {
+    // this.authService.mostrarMenuEmitter.subscribe(
+    //   mostrar => this.mostrarMenu = mostrar
+    // );
+  }
 }

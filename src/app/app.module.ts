@@ -1,4 +1,4 @@
-// import { AuthGuard } from './guards/auth.guard';
+import { AuthGuard } from './auth/guards/auth.guard';
 import { AuthService } from './auth/auth.service';
 import { SharedModule } from './shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -128,7 +128,7 @@ import { WaintingLineDetailComponent } from './wainting-lines/wainting-line-deta
   providers: [
     MatDateRangePicker,
     AuthService,
-    // AuthGuard,
+    AuthGuard,
   ],
   bootstrap: [AppComponent]
 })

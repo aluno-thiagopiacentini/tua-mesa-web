@@ -10,13 +10,14 @@ import { QueuesFormComponent } from './queues/queues-form/queues-form.component'
 // import { UsersFormComponent } from './users/users-form/users-form.component';
 // import { UsersResolverGuard } from './auth/guards/users.resolver.guard';
 import { QueuesResolverGuard } from './auth/guards/queues.resolver.guard';
+import { AuthGuard } from './auth/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: SigninComponent },
   {
     path: 'filas',
     component: QueuesComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   // {
   //   path: 'users',
@@ -31,12 +32,12 @@ const routes: Routes = [
   {
     path: 'espera',
     component: WaintingLinesComponent,
-    //  canActivate: [AuthGuard],
+     canActivate: [AuthGuard],
   },
   {
     path: 'detalhes',
     component: WaintingLineDetailComponent,
-    //  canActivate: [AuthGuard],
+     canActivate: [AuthGuard],
   },
   // {
   //   path: 'users/novo-usuario',
@@ -52,7 +53,7 @@ const routes: Routes = [
     resolve: {
       queue: QueuesResolverGuard,
     },
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   // {
   //   path: 'users/editar/:id',
@@ -68,12 +69,12 @@ const routes: Routes = [
     resolve: {
       queue: QueuesResolverGuard,
     },
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'detalhes/:id',
     component: WaintingLineDetailComponent,
-    //  canActivate: [AuthGuard],
+     canActivate: [AuthGuard],
   },
   { path: '**', redirectTo: '' },
 ];
