@@ -7,4 +7,5 @@ export interface WaintingLine {
   created_at: Date;
   updated_at: Date;
   qty_total: number;
+  max_waiting_minutes: Date;
 }
