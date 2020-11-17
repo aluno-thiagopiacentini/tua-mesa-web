@@ -25,11 +25,17 @@ export class WaintingLinesDetailService {
     return this.http.get<WaintingLinesDetail>(`${this.API}/${id}`).pipe(take(1));
   }
 
-
-
-
-
-
+  create(client) {
+    return this.http
+      .post(this.API,
+        {
+          custmoter_name: client.custmoter_name,
+          customer_phone_number: client.customer_phone_number
+        },
+        { withCredentials: true })
+      .pipe(take(1));
   }
+
+}
 
 

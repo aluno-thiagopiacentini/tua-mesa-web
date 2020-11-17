@@ -50,6 +50,7 @@ import { QueuesComponent } from './queues/queues.component';
 import { QueuesFormComponent } from './queues/queues-form/queues-form.component';
 import { WaintingLinesComponent } from './wainting-lines/wainting-lines.component';
 import { WaintingLineDetailComponent } from './wainting-lines/wainting-line-detail/wainting-line-detail.component';
+import { WaintingLineFormsComponent } from './wainting-lines/wainting-line-forms/wainting-line-forms/wainting-line-forms.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { WaintingLineDetailComponent } from './wainting-lines/wainting-line-deta
     // UsersFormComponent,
     WaintingLinesComponent,
     WaintingLineDetailComponent,
+    WaintingLineFormsComponent,
   ],
   imports: [
     ReactiveFormsModule,

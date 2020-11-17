@@ -42,7 +42,7 @@ export class WaintingLinesComponent implements OnInit {
   onRefresh() {
     this.serviceWaintingLines.listWaintingLines().subscribe(data => {
       console.log('Wainting Lines: ' + JSON.stringify(data.data));
-        this.waintingLines = data.data;
+      this.waintingLines = data.data;
       });
     // this.waintingLines$ = this.serviceWaintingLines.listWaintingLines()
     //                       .pipe(

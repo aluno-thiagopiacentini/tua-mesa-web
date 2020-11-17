@@ -1,3 +1,4 @@
+import { WaintingLineFormsComponent } from './wainting-lines/wainting-line-forms/wainting-line-forms/wainting-line-forms.component';
 
 import { WaintingLineDetailComponent } from './wainting-lines/wainting-line-detail/wainting-line-detail.component';
 import { WaintingLinesComponent } from './wainting-lines/wainting-lines.component';
@@ -36,8 +37,15 @@ const routes: Routes = [
      canActivate: [AuthGuard],
   },
   {
-    path: 'detalhes',
-    component: WaintingLineDetailComponent,
+    path: 'nova-espera',
+    // component: WaintingLineDetailComponent,
+    component: WaintingLineFormsComponent,
+     canActivate: [AuthGuard],
+  },
+  {
+    path: 'nova-espera/:id',
+    // component: WaintingLineDetailComponent,
+    component: WaintingLineFormsComponent,
      canActivate: [AuthGuard],
   },
   // {
