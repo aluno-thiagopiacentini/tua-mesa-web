@@ -1,9 +1,11 @@
+import { ActivatedRoute } from '@angular/router';
 import { AlertModalService } from './../../../shared/alert-modal.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { WaintingLinesDetailService } from './../../wainting-line-detail/wainting-lines-detail.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-wainting-line-forms',
@@ -22,10 +24,22 @@ export class WaintingLineFormsComponent implements OnInit {
     private waintingLinesDetailService: WaintingLinesDetailService,
     private modalService: BsModalService,
     private alertService: AlertModalService,
+    private route: ActivatedRoute,
     ) { }
 
   ngOnInit(): void {
-    this.formNewClient = this.formBuilder.group({
+
+    // this.route.params
+    // .pipe(
+    //   map((params: any) => params['id']),
+    //   switchMap(id => this.waintingLinesDetailService.loadById(id))
+    // )
+    // .subscribe(lineUp => this.updateClient(lineUp));
+
+
+      const waintingLine = this.route.snapshot.data['novaEspera'];
+
+      this.formNewClient = this.formBuilder.group({
       customer_name: [
         null,
         [Validators.required, Validators.minLength(3), Validators.maxLength(20)]
@@ -39,6 +53,15 @@ export class WaintingLineFormsComponent implements OnInit {
     });
   }
 
+  // updateClient(client){
+  //   this.formNewClient.patchValue(
+  //     {
+  //       custmoter_name: client.custmoter_name,
+  //       customer_phone_number: client.customer_phone_number
+  //     },
+  //   )
+  // }
+
   hasError(field: string) {
     return this.formNewClient.get(field).errors;
   }
@@ -48,22 +71,28 @@ export class WaintingLineFormsComponent implements OnInit {
     console.log(this.formNewClient.value);
     if (this.formNewClient.valid) {
       console.log('submit');
-      this.waintingLinesDetailService.create(this.formNewClient.value).subscribe(
+
+      let msgSuccess = 'Cliente criado com sucesso';
+      let msgError = 'Erro ao criar cliente';
+      if (this.formNewClient.value.id) {
+        let msgSuccess = 'Cliente atualizado com sucesso';
+        let msgError = 'Erro ao atualizar cliente';
+      }
+
+      this.waintingLinesDetailService.save(this.formNewClient.value).subscribe(
         success => {
-          this.alertService.showAlertSuccess('Cliente inserido com sucesso');
+          this.alertService.showAlertSuccess(msgSuccess);
           this.location.back();
         },
-        error => this.alertService.showAlertDanger('Erro ao salvar'),
-        () => console.log('request completo')
+        error => { this.alertService.showAlertDanger(msgError); }
       );
     }
-  } // finish #128
+  } // end #132
 
   onCancel() {
     this.submitted = false;
     this.formNewClient.reset();
     this.location.back();
   }
-
 
 }

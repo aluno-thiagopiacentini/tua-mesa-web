@@ -17,7 +17,7 @@ export class WaintingLinesDetailService {
   // tslint:disable-next-line: typedef
   listWaintingLines() {
     return this.http
-      .get<WaintingLinesDetail>(this.API, {withCredentials: true})
+      .get<WaintingLinesDetail[]>(this.API, {withCredentials: true})
       .pipe(delay(2000), tap(console.log));
     }
 
@@ -35,6 +35,19 @@ export class WaintingLinesDetailService {
         { withCredentials: true })
       .pipe(take(1));
   }
+
+  update(client) {
+    return this.http.put(`${this.API}/${client.id}`, client).pipe(take(1));
+  }
+
+  save(client) {
+    if(client.id){
+      return this.update(client);
+    } else {
+      return this.create(client);
+    }
+  }
+
 
 }
 

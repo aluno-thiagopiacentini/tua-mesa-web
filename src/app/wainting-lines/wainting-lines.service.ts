@@ -22,4 +22,8 @@ export class WaintingLinesService {
       );
   }
 
+  loadById(id) {
+    return this.http.get<WaintingLine>(`${this.API}/${id}`).pipe(take(1));
+  }
+
 }

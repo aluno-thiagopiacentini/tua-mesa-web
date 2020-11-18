@@ -13,6 +13,7 @@ import { QueuesFormComponent } from './queues/queues-form/queues-form.component'
 // import { UsersResolverGuard } from './auth/guards/users.resolver.guard';
 import { QueuesResolverGuard } from './auth/guards/queues.resolver.guard';
 import { AuthGuard } from './auth/guards/auth.guard';
+import { WaintingLineResolverGuard } from './auth/guards/wainting-lines.resolver.guard';
 
 const routes: Routes = [
   { path: '', component: SigninComponent },
@@ -41,12 +42,18 @@ const routes: Routes = [
     // component: WaintingLineDetailComponent,
     component: WaintingLineFormsComponent,
      canActivate: [AuthGuard],
+     resolve: {
+      novaEspera: WaintingLineResolverGuard,
+    }
   },
   {
     path: 'nova-espera/:id',
     // component: WaintingLineDetailComponent,
     component: WaintingLineFormsComponent,
      canActivate: [AuthGuard],
+     resolve: {
+       novaEspera: WaintingLineResolverGuard,
+     }
   },
   // {
   //   path: 'users/novo-usuario',

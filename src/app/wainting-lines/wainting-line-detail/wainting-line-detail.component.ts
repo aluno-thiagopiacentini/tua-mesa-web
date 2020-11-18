@@ -15,7 +15,7 @@ export class WaintingLineDetailComponent implements OnInit {
   constructor(
     private service: WaintingLinesDetailService,
     private router: Router,
-    private toute: ActivatedRoute,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
@@ -27,6 +27,10 @@ export class WaintingLineDetailComponent implements OnInit {
       console.log('Detail: ' + JSON.stringify(data));
       this.waintingLinesDetail = data;
     });
+  }
+
+  onEdit(id) {
+    this.router.navigate(['editar', id], {relativeTo: this.route});
   }
 
 }
