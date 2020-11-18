@@ -10,14 +10,14 @@ import { environment } from './../../../environments/environment';
 })
 export class WaintingLinesDetailService {
   // private readonly API = 'http://localhost:3000/wainting-lines';
-  private readonly API = `${environment.API}/line-ups?waiting_line_id=37`;
+  private readonly API = `${environment.API}/line-ups?waiting_line_id=`;
 
   constructor(private http: HttpClient) {}
 
   // tslint:disable-next-line: typedef
-  listWaintingLines() {
+  listWaintingLines(id) {
     return this.http
-      .get<WaintingLinesDetail[]>(this.API, {withCredentials: true})
+      .get<WaintingLinesDetail[]>(this.API+id, {withCredentials: true})
       .pipe(delay(2000), tap(console.log));
     }
 

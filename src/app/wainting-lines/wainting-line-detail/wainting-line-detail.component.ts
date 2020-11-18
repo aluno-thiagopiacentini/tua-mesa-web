@@ -11,6 +11,7 @@ import { WaintingLinesDetail } from './wainting-lines-detail';
 })
 export class WaintingLineDetailComponent implements OnInit {
   waintingLinesDetail: WaintingLinesDetail;
+  id: string;
 
   constructor(
     private service: WaintingLinesDetailService,
@@ -19,11 +20,16 @@ export class WaintingLineDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.onRefresh();
+    this.route.paramMap.subscribe( paramMap => {
+      this.id = paramMap.get('id');
+  });
+
+  this.onRefresh();
+
   }
 
   onRefresh() {
-    this.service.listWaintingLines().subscribe( data => {
+    this.service.listWaintingLines(this.id).subscribe( data => {
       console.log('Detail: ' + JSON.stringify(data));
       this.waintingLinesDetail = data;
     });
