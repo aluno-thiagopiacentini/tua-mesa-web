@@ -1,3 +1,4 @@
+import { StatusPositionComponent } from './status-position/status-position.component';
 import { WaintingLineFormsComponent } from './wainting-lines/wainting-line-forms/wainting-line-forms/wainting-line-forms.component';
 
 import { WaintingLineDetailComponent } from './wainting-lines/wainting-line-detail/wainting-line-detail.component';
@@ -35,6 +36,11 @@ const routes: Routes = [
   {
     path: 'espera',
     component: WaintingLinesComponent,
+     canActivate: [AuthGuard],
+  },
+  {
+    path: 'status',
+    component: StatusPositionComponent,
      canActivate: [AuthGuard],
   },
   {
