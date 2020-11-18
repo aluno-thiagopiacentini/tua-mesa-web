@@ -39,9 +39,8 @@ const routes: Routes = [
      canActivate: [AuthGuard],
   },
   {
-    path: 'status',
-    component: StatusPositionComponent,
-     canActivate: [AuthGuard],
+    path: 'status/:token',
+    component: StatusPositionComponent
   },
   {
     path: 'nova-espera',

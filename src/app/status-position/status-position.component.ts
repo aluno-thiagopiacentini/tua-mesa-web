@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { StatusPositionService } from './status-position.service';
+
 
 @Component({
   selector: 'app-status-position',
@@ -7,13 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StatusPositionComponent implements OnInit {
 
-  constructor() { }
+  data: Position;
+  token: string;
+
+  constructor(
+    private service: StatusPositionService,
+    private router: Router,
+    private route: ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe( paramMap => {
+      this.token = paramMap.get('token');
+    });
+    this.onRefresh();
   }
 
-  onRemove() {
-    console.log('cliente desistiu da fila');
-  }
 
+  onRefresh(): void {
+    this.service.listPosition(this.token).subscribe( data => {
+      this.data = data;
+  });
+  }
 }

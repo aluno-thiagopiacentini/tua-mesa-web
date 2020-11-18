@@ -21,7 +21,7 @@
 <div class="container">
   <div class="text-center">
     <h3>Sua Posição</h3>
-    <p>18</p>
+    <p> {{ data | json }} </p>
   </div>
 </div>
 
@@ -34,7 +34,7 @@
     </div>
     <div class="row d-flex justify-content-end align-items-end">
       <div class="col">
-        <button class="btn btn-danger" (click)="onRemove()" >
+        <button class="btn btn-danger" >
           Desistir
         </button>
       </div>
