@@ -2,12 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap, delay, take } from 'rxjs/operators';
 import { environment } from './../../environments/environment';
-
-interface Position {
-  position: number;
-  company_name: string;
-
-}
+import { CustomerPosition } from './CustomerPosition';
 
 @Injectable({
   providedIn: 'root',
@@ -21,8 +16,8 @@ export class StatusPositionService {
   // tslint:disable-next-line: typedef
   listPosition(token) {
     return this.http
-      .get<Position>(this.API+token, {withCredentials: true})
-      .pipe(delay(2000), tap(console.log));
+      .get<CustomerPosition[]>(this.API+token, {withCredentials: true})
+      .pipe(tap(console.log));
     }
 }
 

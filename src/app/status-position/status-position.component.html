@@ -4,12 +4,12 @@
       <div class="card mb-3">
         <div class="row no-gutters">
           <div class="col-auto">
-            <img src="https://via.placeholder.com/350" class="card-img" alt="logo">
+            <img src="{{customerPosition.data[0].company_logo}}" class="card-img" alt="logo">
           </div>
           <div class="col-md">
             <div class="card-body">
-              <h3 class="card-title">Restaurante</h3>
-              <p class="card-text">Informação complementar</p>
+              <h1 class="card-title">Restaurante</h1>
+              <p class="card-text">{{ customerPosition.data[0].company_name }}</p>
             </div>
           </div>
         </div>
@@ -18,27 +18,30 @@
   </div>
 </div>
 
-<div class="container">
+<div class="container mt-2">
   <div class="text-center">
-    <h3>Sua Posição</h3>
-    <p> {{ data | json }} </p>
+    <p class="display-4">Sua Posição</p>
+    <p class="text-muted display-3"> {{ customerPosition.data[0].position }} </p>
+    <form>
+      <input type="button" class="btn btn-primary" value="Atualizar" onclick="window.location.reload();" />
+    </form>
   </div>
 </div>
 
-<div class="container">
+<div class="container mt-4">
   <div class="row">
     <div class="col">
-      <h3><a href="#">Confira aqui o nosso cardápio</a></h3>
-      <h3><a href="#">Confira aqui as sugestões do dia</a></h3>
-      <h3><a href="#">Confira aqui as nossas promoções</a></h3>
+      <p class="text-muted">Confira aqui o nosso cardápio</p>
+      <p class="text-muted">Confira aqui as sugestões do dia</p>
+      <p class="text-muted">Confira aqui as nossas promoções</p>
     </div>
-    <div class="row d-flex justify-content-end align-items-end">
+    <!-- <div class="row d-flex justify-content-end align-items-end">
       <div class="col">
         <button class="btn btn-danger" >
           Desistir
         </button>
       </div>
-    </div>
+    </div> -->
   </div>
 
   <div class="d-flex justify-content-end">

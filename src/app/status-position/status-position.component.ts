@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CustomerPosition } from './CustomerPosition';
 import { StatusPositionService } from './status-position.service';
+import * as faker from 'faker';
 
 
 @Component({
@@ -10,7 +12,7 @@ import { StatusPositionService } from './status-position.service';
 })
 export class StatusPositionComponent implements OnInit {
 
-  data: Position;
+  customerPosition: CustomerPosition;
   token: string;
 
   constructor(
@@ -29,7 +31,9 @@ export class StatusPositionComponent implements OnInit {
 
   onRefresh(): void {
     this.service.listPosition(this.token).subscribe( data => {
-      this.data = data;
+      this.customerPosition = data;
+      this.customerPosition.data[0].company_logo = 'https://image.freepik.com/vetores-gratis/desenho-restaurante-bela_23-2147567264.jpg';
+      console.log('@@@@@ : ' + JSON.stringify(this.customerPosition));
   });
   }
 }
