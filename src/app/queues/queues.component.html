@@ -23,7 +23,7 @@
           <tr *ngFor="let queue of queues">
             <td>{{ queue.name }}</td>
             <td [innerHTML]="queue.is_priority | transformBoolean"></td>
-            <td>{{queue.status }}</td>
+            <td [innerHTML]="queue.status | transformBoolean"></td>
             <td colspan="2">
               <span>
                 <button class="btn btn-outline-primary" (click)="onEdit(queue.id)">
