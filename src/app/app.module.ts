@@ -3,6 +3,7 @@ import { AuthService } from './auth/auth.service';
 import { SharedModule } from './shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { TransformBoolean } from './shared/transform/transform-boolean';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -53,6 +54,7 @@ import { WaintingLineDetailComponent } from './wainting-lines/wainting-line-deta
 import { WaintingLineFormsComponent } from './wainting-lines/wainting-line-forms/wainting-line-forms/wainting-line-forms.component';
 import { StatusPositionComponent } from './status-position/status-position.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { TransformStatusFila } from './shared/transform/transform-status';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,9 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
     WaintingLineDetailComponent,
     WaintingLineFormsComponent,
     StatusPositionComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    TransformBoolean,
+    TransformStatusFila
   ],
   imports: [
     ReactiveFormsModule,

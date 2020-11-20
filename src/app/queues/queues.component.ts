@@ -7,6 +7,7 @@ import { Queues } from './queues';
 import { QueuesService } from './queues.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QueuesGenericService } from './queues-generic.service';
+import { TransformBoolean } from '../shared/transform/transform-boolean';
 
 @Component({
   selector: 'app-queues',

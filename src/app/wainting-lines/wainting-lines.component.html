@@ -22,7 +22,7 @@
         <tbody>
           <tr *ngFor="let waintingLine of waintingLines" >
             <td class="align-middle">{{ waintingLine.name }}</td>
-            <td class="align-middle">{{ waintingLine.is_priority }}</td>
+            <td class="align-middle" [innerHTML]="waintingLine.is_priority | transformBoolean"></td>
             <td class="align-middle"> {{ waintingLine.qty_total }} </td>
             <td class="align-middle">{{ waintingLine.max_waiting_minutes }}<span *ngIf="waintingLine.max_waiting_minutes"> min</span></td>
             <td class="align-middle" colspan="2">
