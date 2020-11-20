@@ -26,12 +26,12 @@ export class QueuesService {
 
   // tslint:disable-next-line: typedef
   private createQueues(queue) {
-    return this.http.post(this.API, { name: queue.name , is_priority: false} , { withCredentials: true }).pipe(take(1));
+    return this.http.post(this.API, { name: queue.name , is_priority: queue.is_priority} , { withCredentials: true }).pipe(take(1));
   }
 
   // tslint:disable-next-line: typedef
   private updateQueues(queue) {
-    return this.http.put(`${this.API}/${queue.id}`, { name: queue.name , is_priority: false} ).pipe(take(1));
+    return this.http.put(`${this.API}/${queue.id}`, { name: queue.name , is_priority: queue.is_priority} ).pipe(take(1));
   }
 
   // tslint:disable-next-line: typedef

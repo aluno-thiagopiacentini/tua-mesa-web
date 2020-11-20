@@ -24,8 +24,8 @@
         <div class="col-md mb-3 form-group">
           <label for="is_priority">Prioritária</label>
             <select class="form-control is-valid" id="is_priority" formControlName="is_priority">
-              <option value="true">Sim</option>
-              <option value="false" selected>Não</option>
+              <option [ngValue]="true">Sim</option>
+              <option [ngValue]="false" selected>Não</option>
             </select>
         </div>
 
