@@ -1,9 +1,10 @@
 import { WaintingLinesDetail, NextCustomer } from './wainting-lines-detail';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { tap, delay, take } from 'rxjs/operators';
+import { tap, take } from 'rxjs/operators';
 import { environment } from './../../../environments/environment';
 import { Customer } from '../wainting-line-forms/Customer';
+import { Observable } from 'rxjs';
 
 interface CustomerResponse {
   data: Customer;
@@ -19,10 +20,9 @@ export class WaintingLinesDetailService {
   constructor(private http: HttpClient) {}
 
   // tslint:disable-next-line: typedef
-  listWaintingLines(id) {
+  listWaintingLines(id): Observable<WaintingLinesDetail> {
     return this.http
-      .get<WaintingLinesDetail[]>(this.API+id, {withCredentials: true})
-      .pipe(tap(console.log));
+      .get<WaintingLinesDetail>(this.API+id, {withCredentials: true});
     }
 
   loadById(id) {

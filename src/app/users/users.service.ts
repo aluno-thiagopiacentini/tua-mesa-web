@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { delay, take, tap } from 'rxjs/operators';
+import { take, tap } from 'rxjs/operators';
 import { environment } from './../../environments/environment';
 import { Users } from './users';
 
@@ -17,7 +17,7 @@ export class UsersService {
   listUsers() {
     return this.http
       .get<Users[]>(this.API, { withCredentials: true })
-      .pipe(delay(1000), tap(console.log));
+      .pipe(tap(console.log));
   }
 
   // tslint:disable-next-line: typedef

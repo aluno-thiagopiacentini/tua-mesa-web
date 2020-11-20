@@ -1,4 +1,4 @@
-import { tap, delay, take } from 'rxjs/operators';
+import { tap, take } from 'rxjs/operators';
 import { WaintingLine } from './wainting-line';
 import { environment } from '../../environments/environment';
 import { Injectable } from '@angular/core';
@@ -17,7 +17,6 @@ export class WaintingLinesService {
   listWaintingLines() {
     return this.http.get<WaintingLine[]>(this.API, { withCredentials: true })
       .pipe(
-        delay(2000),
         tap(console.log)
       );
   }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { tap, delay, take } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { environment } from './../../environments/environment';
 import { CustomerPosition } from './CustomerPosition';
 

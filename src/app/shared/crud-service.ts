@@ -1,4 +1,4 @@
-import { delay, tap, take } from 'rxjs/operators';
+import { tap, take } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 export class CrudService<T> {
@@ -9,7 +9,7 @@ export class CrudService<T> {
   listQueues() {
     return this.http
       .get<T[]>(this.API_URL, { withCredentials: true })
-      .pipe(delay(1000), tap(console.log));
+      .pipe(tap(console.log));
   }
 
   // tslint:disable-next-line: typedef

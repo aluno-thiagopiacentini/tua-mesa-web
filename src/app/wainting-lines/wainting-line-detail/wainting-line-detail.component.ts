@@ -19,7 +19,7 @@ export class WaintingLineDetailComponent implements OnInit {
   constructor(
     private service: WaintingLinesDetailService,
     private router: Router,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -33,7 +33,6 @@ export class WaintingLineDetailComponent implements OnInit {
   onRefresh(): void {
     this.isLoaded = true;
     this.service.listWaintingLines(this.id).subscribe( data => {
-      console.log(data);
       this.waintingLinesDetail = data;
       this.isLoaded = false;
     },
@@ -51,7 +50,11 @@ export class WaintingLineDetailComponent implements OnInit {
 
   onCall(id): void {
     this.isLoaded = true;
-    this.service.callNextCustomer(this.id);
-    this.onRefresh();
+    this.service.callNextCustomer(this.id)
+    .then(() => this.onRefresh())
+    .catch(() => {
+      this.isLoaded = false;
+      this.onRefresh();
+    });
   }
 }

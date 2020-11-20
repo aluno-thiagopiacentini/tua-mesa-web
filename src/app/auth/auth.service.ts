@@ -1,5 +1,5 @@
 import { Payload } from './interfaces/auth';
-import { map, catchError, tap, take, delay } from 'rxjs/operators';
+import { map, catchError, tap, take } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
@@ -62,8 +62,7 @@ export class AuthService {
       withCredentials: true,
       },
       )
-      .pipe(delay(2000),
-        map((auth: Auth) => this.setAuth(auth)),
+      .pipe(map((auth: Auth) => this.setAuth(auth)),
         catchError((response) => throwError(response.error))
       );
   }
