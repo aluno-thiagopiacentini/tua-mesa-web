@@ -17,6 +17,8 @@ export class WaintingLineFormsComponent implements OnInit {
 
   formNewClient: FormGroup;
   submitted = false;
+  ishttpLoaded = false;
+  isLoaded = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,15 +42,18 @@ export class WaintingLineFormsComponent implements OnInit {
       const waintingLine = this.route.snapshot.data['novaEspera'];
 
       this.formNewClient = this.formBuilder.group({
-      customer_name: [
+      name: [
         null,
         [Validators.required, Validators.minLength(3), Validators.maxLength(20)]
       ],
-      customer_phone_number: [
+      phone_number: [
         null, [Validators.required]
       ],
-      obs: [
-        null
+      email: [
+        null, [Validators.minLength(3), Validators.maxLength(20)]
+      ],
+      description: [
+        null, [Validators.minLength(3), Validators.maxLength(100)]
       ]
     });
   }
@@ -68,29 +73,37 @@ export class WaintingLineFormsComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    console.log(this.formNewClient.value);
-    if (this.formNewClient.valid) {
-      console.log('submit');
+    this.isLoaded = true;
 
-      let msgSuccess = 'Cliente criado com sucesso';
-      let msgError = 'Erro ao criar cliente';
-      if (this.formNewClient.value.id) {
-        let msgSuccess = 'Cliente atualizado com sucesso';
-        let msgError = 'Erro ao atualizar cliente';
-      }
-
-      this.waintingLinesDetailService.save(this.formNewClient.value).subscribe(
-        success => {
-          this.alertService.showAlertSuccess(msgSuccess);
-          this.location.back();
-        },
-        error => { this.alertService.showAlertDanger(msgError); }
-      );
-    }
-  } // end #132
+    this.waintingLinesDetailService.save(this.formNewClient.value)
+    .then( () => {
+      this.alertService.showAlertSuccess('Cadastro realizado com sucesso!');
+      this.isLoaded = false;
+      this.location.back();
+    })
+    .catch( error => {
+      this.isLoaded = false;
+      console.log(error);
+      this.alertService.showAlertDanger(error.error.message);
+    });
+    
+    // .subscribe(
+    //     success => {
+    //       this.alertService.showAlertSuccess('Cadastro realizado com sucesso!');
+    //       this.isLoaded = false;
+    //       this.location.back();
+    //     },
+    //     error => {
+    //       console.log(JSON.stringify(error));
+    //       this.alertService.showAlertDanger(error.error.message);
+    //       this.isLoaded = false;
+    //     }
+    //   );
+  }
 
   onCancel() {
     this.submitted = false;
+    this.isLoaded = false;
     this.formNewClient.reset();
     this.location.back();
   }

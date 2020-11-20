@@ -10,6 +10,9 @@ import { WaintingLinesDetail } from './wainting-lines-detail';
   preserveWhitespaces: true,
 })
 export class WaintingLineDetailComponent implements OnInit {
+  ishttpLoaded = false;
+  isLoaded = false;
+
   waintingLinesDetail: WaintingLinesDetail;
   id: string;
 
@@ -22,21 +25,33 @@ export class WaintingLineDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe( paramMap => {
       this.id = paramMap.get('id');
-  });
-
-  this.onRefresh();
-
-  }
-
-  onRefresh() {
-    this.service.listWaintingLines(this.id).subscribe( data => {
-      console.log('Detail: ' + JSON.stringify(data));
-      this.waintingLinesDetail = data;
     });
+
+    this.onRefresh();
   }
 
-  onEdit(id) {
+  onRefresh(): void {
+    this.isLoaded = true;
+    this.service.listWaintingLines(this.id).subscribe( data => {
+      console.log(data);
+      this.waintingLinesDetail = data;
+      this.isLoaded = false;
+    },
+    this.handleError);
+  }
+
+  handleError(): void {
+    console.log('*************** ERROR');
+    this.isLoaded = false;
+  }
+
+  onEdit(id): void {
     this.router.navigate(['editar', id], {relativeTo: this.route});
   }
 
+  onCall(id): void {
+    this.isLoaded = true;
+    this.service.callNextCustomer(this.id);
+    this.onRefresh();
+  }
 }

@@ -15,6 +15,8 @@ import { WaintingLinesService } from './wainting-lines.service';
   styleUrls: ['./wainting-lines.component.scss'],
 })
 export class WaintingLinesComponent implements OnInit {
+  ishttpLoaded = false;
+  isLoaded = false;
   waintingLines: WaintingLine[];
 
   bsModalRef: BsModalRef;
@@ -40,9 +42,10 @@ export class WaintingLinesComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   onRefresh() {
+    this.isLoaded = true;
     this.serviceWaintingLines.listWaintingLines().subscribe(data => {
-      console.log('Wainting Lines: ' + JSON.stringify(data.data));
       this.waintingLines = data.data;
+      this.isLoaded = false;
       });
     // this.waintingLines$ = this.serviceWaintingLines.listWaintingLines()
     //                       .pipe(
@@ -70,11 +73,11 @@ export class WaintingLinesComponent implements OnInit {
     // this.bsModalRef.content.type = 'danger';
     // this.bsModalRef.content.message = 'Erro ao carregar lista de espera.';
     this.alertService.showAlertDanger('Erro ao carregar lista de espera.');
+    this.isLoaded = false;
   }
 
     // tslint:disable-next-line: typedef
     onDetail(id) {
-      console.log('detalhes', id);
       this.router.navigate(['detalhes', id]);
     }
 

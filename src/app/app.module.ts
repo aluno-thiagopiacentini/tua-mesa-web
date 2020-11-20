@@ -52,6 +52,7 @@ import { WaintingLinesComponent } from './wainting-lines/wainting-lines.componen
 import { WaintingLineDetailComponent } from './wainting-lines/wainting-line-detail/wainting-line-detail.component';
 import { WaintingLineFormsComponent } from './wainting-lines/wainting-line-forms/wainting-line-forms/wainting-line-forms.component';
 import { StatusPositionComponent } from './status-position/status-position.component';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { StatusPositionComponent } from './status-position/status-position.compo
     WaintingLineDetailComponent,
     WaintingLineFormsComponent,
     StatusPositionComponent,
+    SpinnerComponent
   ],
   imports: [
     ReactiveFormsModule,

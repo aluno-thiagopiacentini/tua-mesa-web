@@ -17,6 +17,8 @@ import { QueuesGenericService } from '../queues-generic.service';
   preserveWhitespaces: true,
 })
 export class QueuesFormComponent implements OnInit {
+  ishttpLoaded = false;
+  isLoaded = false;
   formQueue: FormGroup;
   submitted = false;
 
@@ -93,10 +95,8 @@ export class QueuesFormComponent implements OnInit {
   // tslint:disable-next-line: typedef
   onSubmit() {
     this.submitted = true;
-    console.log(this.formQueue.value);
+    this.isLoaded = true;
     if (this.formQueue.valid) {
-      console.log('submit');
-
       // tslint:disable-next-line: prefer-const
       let msgSuccess = 'Fila criada com sucesso!';
       // tslint:disable-next-line: prefer-const
@@ -111,10 +111,14 @@ export class QueuesFormComponent implements OnInit {
 
       this.service.save(this.formQueue.value).subscribe(
         (success) => {
+          this.isLoaded = false;
           this.modal.showAlertSuccess(msgSuccess);
           this.location.back();
         },
-        (error) => this.modal.showAlertDanger(msgError)
+        (error) => {
+          this.isLoaded = false;
+          this.modal.showAlertDanger(msgError);
+        }
       );
 
       /*
@@ -150,6 +154,7 @@ export class QueuesFormComponent implements OnInit {
   // tslint:disable-next-line: typedef
   onCancel() {
     this.submitted = false;
+    this.isLoaded = false;
     this.formQueue.reset();
     this.location.back();
     // console.log('cancel');

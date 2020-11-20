@@ -45,7 +45,10 @@
       </table>
       <div class="d-flex justify-content-between">
         <button class="btn btn-primary" [routerLink]="['/nova-espera']">Adicionar</button>
-        <button class="btn btn-success">Chamar próximo</button>
+        <div class="d-flex justify-content-center">
+          <app-spinner [loading]="isLoaded" [httploading]="ishttpLoaded"></app-spinner>
+        </div>
+        <button class="btn btn-success" (click)="onCall(id)">Chamar próximo</button>
       </div>
     </div>
   </div>

@@ -10,6 +10,8 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+  ishttpLoaded = false;
+  isLoaded = false;
   formSignUp: FormGroup;
 
   constructor(
@@ -29,11 +31,17 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit() {
+  onSubmit(): void {
+    this.isLoaded = true;
     this.authService.SignUp(
       this.formSignUp.value
      ).then ((data) => {
+      this.isLoaded = false;
       this.route.navigate(['filas']);
+     })
+     .catch((error) => {
+      this.isLoaded = false;
+      console.log('Error creating user: ' + JSON.stringify(error))
      });
   }
 }

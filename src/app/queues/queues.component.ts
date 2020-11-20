@@ -15,6 +15,9 @@ import { QueuesGenericService } from './queues-generic.service';
   preserveWhitespaces: true,
 })
 export class QueuesComponent implements OnInit {
+  ishttpLoaded = false;
+  isLoaded = false;
+
   queues: Queues[];
   // bsModalRef: BsModalRef;
 
@@ -40,38 +43,23 @@ export class QueuesComponent implements OnInit {
     this.onRefresh();
   }
 
-  // tslint:disable-next-line: typedef
-  onRefresh() {
+  onRefresh(): void {
+    this.isLoaded = true;
     this.service.listQueues().subscribe(data => {
-      console.log('Queues: ' + JSON.stringify(data.data))
+      console.log('Queues: ' + JSON.stringify(data.data));
       this.queues = data.data;
-    })
-
-    // this.service
-    //   .listQueues()
-    //   .pipe(
-    //     // tslint:disable-next-line: deprecation
-    //     catchError((error) => empty())
-    //   )
-    //   .subscribe(
-    //     (dados) => {
-    //       console.log(dados);
-    //     }
-    //     // error => console.error(error),
-    //     // () => console.log('Observable completo')
-    //   );
+      this.isLoaded = false;
+    });
   }
 
-  // tslint:disable-next-line: typedef
-  handleError() {
+  handleError(): void {
     this.alertService.showAlertDanger('Erro ao carregar a fila de usuários');
     // this.bsModalRef = this.modalService.show(AlertModalComponent);
     // this.bsModalRef.content.type = 'danger';
     // this.bsModalRef.content.message = 'Erro ao carregar a fila de clientes';
   }
 
-  // tslint:disable-next-line: typedef
-  onEdit(id) {
+  onEdit(id: number): void {
     this.router.navigate(['editar', id], { relativeTo: this.route });
   }
 

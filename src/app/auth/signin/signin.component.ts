@@ -14,12 +14,15 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent {
+  ishttpLoaded = false;
+  isLoaded = false;
+
   signInForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private route: Router,
+    private route: Router
   ) {
     this.signInForm = this.formBuilder.group({
       email: ['', Validators.required],
@@ -29,11 +32,17 @@ export class SigninComponent {
   }
 
   onSubmit() {
+    this.isLoaded = true;
     this.authService.signIn(
       this.signInForm.value
     ).subscribe(
-      (response) => this.route.navigate(['espera']),
+      (response) => {
+        this.isLoaded = false;
+        this.route.navigate(['espera']);
+      }
+      ,
       (error) => {
+        this.isLoaded = false;
         this.signInForm.get('password').reset();
       }
     );

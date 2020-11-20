@@ -1,82 +1,102 @@
 <div class="p-5">
   <div class="card p-3">
-    <form class="needs-validation" novalidate [formGroup]="formNewClient">
+    <form class="needs-validation" validate [formGroup]="formNewClient">
       <div class="form-row">
         <div class="col-md mb-3">
-          <label for="customer_name">Nome</label>
+          <label for="phone_number">Celular</label>
           <input
             type="text"
             class="form-control is-valid"
-            id="customer_name"
-            placeholder="Nome da fila"
-            formControlName="customer_name"
-            [ngClass]="{ 'is-invalid': submitted && hasError('customer_name') }"
+            id="phone_number"
+            placeholder="(XX) 91234-5678"
+            formControlName="phone_number"
+            [ngClass]="{ 'is-invalid': submitted && hasError('phone_number') }"
           />
-          <div class="invalid-feedback" *ngIf="hasError('customer_name') && hasError('customer_name')['required']">
+          <div class="invalid-feedback" *ngIf="hasError('phone_number') && hasError('phone_number')['required']">
+            Informa um telefone
+          </div>
+          <div class="invalid-feedback" *ngIf="hasError('phone_number') && hasError('phone_number')['minlength']">
+            Telefone precisa ter no mínimo
+            {{ hasError("phone_number")["minlength"].requiredLength }} caracteres.
+          </div>
+          <div class="invalid-feedback" *ngIf="hasError('phone_number') && hasError('phone_number')['maxlength']">
+            Telefone precisa ter no máximo
+            {{ hasError("phone_number")["maxlength"].requiredLength }} caracteres.
+          </div>
+        </div>
+        <div class="col-md mb-3">
+          <label for="name">Nome</label>
+          <input
+            type="text"
+            class="form-control is-valid"
+            id="name"
+            placeholder="Nome do Cliente"
+            formControlName="name"
+            [ngClass]="{ 'is-invalid': submitted && hasError('name') }"
+          />
+          <div class="invalid-feedback" *ngIf="hasError('name') && hasError('name')['required']">
             Informe o nome
           </div>
 
-          <div class="invalid-feedback" *ngIf="hasError('customer_name') && hasError('customer_name')['minlength']">
+          <div class="invalid-feedback" *ngIf="hasError('name') && hasError('name')['minlength']">
             nome precisa ter no mínimo
-            {{ hasError("customer_name")["minlength"].requiredLength }} caracteres.
+            {{ hasError("name")["minlength"].requiredLength }} caracteres.
           </div>
 
-          <div class="invalid-feedback" *ngIf="hasError('customer_name') && hasError('customer_name')['maxlength']">
+          <div class="invalid-feedback" *ngIf="hasError('name') && hasError('name')['maxlength']">
             nome precisa ter no máximo
-            {{ hasError("customer_name")["maxlength"].requiredLength }} caracteres.
+            {{ hasError("name")["maxlength"].requiredLength }} caracteres.
           </div>
         </div>
 
         <div class="col-md mb-3">
-          <label for="customer_phone_number">Celular</label>
+          <label for="emal">Email</label>
           <input
-            type="text"
-            class="form-control is-valid"
-            id="customer_phone_number"
-            placeholder="Telefone"
-            formControlName="customer_phone_number"
-            [ngClass]="{ 'is-invalid': submitted && hasError('customer_phone_number') }"
-          />
-          <div class="invalid-feedback" *ngIf="hasError('customer_phone_number') && hasError('customer_phone_number')['required']">
-            Informa um telefone
-          </div>
-          <div class="invalid-feedback" *ngIf="hasError('customer_phone_number') && hasError('customer_phone_number')['minlength']">
-            Telefone precisa ter no mínimo
-            {{ hasError("customer_phone_number")["minlength"].requiredLength }} caracteres.
-          </div>
-          <div class="invalid-feedback" *ngIf="hasError('customer_phone_number') && hasError('customer_phone_number')['maxlength']">
-            Telefone precisa ter no máximo
-            {{ hasError("customer_phone_number")["maxlength"].requiredLength }} caracteres.
-          </div>
+            type="email"
+            class="form-control"
+            id="emal"
+            placeholder="email@mail.com"
+            formControlName="email"
+            [ngClass]="{ 'is-invalid': submitted && hasError('email') }"
+            />
+            <div class="invalid-feedback" *ngIf="hasError('email') && hasError('email')['minlength']">
+              Email precisa ter no mínimo
+              {{ hasError("email")["minlength"].requiredLength }} caracteres.
+            </div>
+            <div class="invalid-feedback" *ngIf="hasError('email') && hasError('email')['maxlength']">
+              Email precisa ter no máximo
+              {{ hasError("email")["maxlength"].requiredLength }} caracteres.
+            </div>
         </div>
 
         <div class="col-md mb-3">
-          <label for="status">Obs:</label>
+          <label for="status">Observação</label>
           <input
             type="text"
             class="form-control"
-            id="obs"
+            id="description"
             placeholder="Observação"
-            formControlName="obs"
-
-          />
-          <!-- <div class="invalid-feedback" *ngIf="hasError('status') && hasError('status')['required']">
-            Informe o status da fila
-          </div>
-          <div class="invalid-feedback" *ngIf="hasError('status') && hasError('status')['minlength']">
-            Status precisa ter no mínimo
-            {{ hasError("status")["minlength"].requiredLength }} caracteres.
-          </div>
-          <div class="invalid-feedback" *ngIf="hasError('status') && hasError('status')['maxlength']">
-            Status precisa ter no máximo
-            {{ hasError("status")["maxlength"].requiredLength }} caracteres.
-          </div> -->
+            formControlName="description"
+            [ngClass]="{ 'is-invalid': submitted && hasError('description') }"
+            />
+            <div class="invalid-feedback" *ngIf="hasError('description') && hasError('description')['minlength']">
+              Observação precisa ter no mínimo
+              {{ hasError("description")["minlength"].requiredLength }} caracteres.
+            </div>
+            <div class="invalid-feedback" *ngIf="hasError('description') && hasError('description')['maxlength']">
+              Observação precisa ter no máximo
+              {{ hasError("description")["maxlength"].requiredLength }} caracteres.
+            </div>
         </div>
       </div>
 
       <div>
-        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Salvar</button>
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()" [disabled]="formNewClient.invalid">Salvar</button>
+        
         <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancelar</button>
+      </div>
+      <div class="d-flex justify-content-center">
+        <app-spinner [loading]="isLoaded" [httploading]="ishttpLoaded"></app-spinner>
       </div>
     </form>
   </div>

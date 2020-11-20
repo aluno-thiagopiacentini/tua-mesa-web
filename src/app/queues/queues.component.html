@@ -43,6 +43,9 @@
           </tr>
         </tbody>
       </table>
+      <div class="d-flex justify-content-center">
+        <app-spinner [loading]="isLoaded" [httploading]="ishttpLoaded"></app-spinner>
+      </div>
       <!-- <ng-template #loadingError>
         <div *ngIf="error$ | async; else loading">
           Erro ao carregar a fila de clientes

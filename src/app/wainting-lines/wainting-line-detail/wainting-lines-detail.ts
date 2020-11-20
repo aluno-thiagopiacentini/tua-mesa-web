@@ -21,3 +21,11 @@ export interface WaintingLinesDetail {
   data: WaintingLines[];
   summary: Summary;
 }
+
+interface Customer {
+  id: NumberConstructor;
+}
+
+export interface NextCustomer {
+  data: Customer;
+}

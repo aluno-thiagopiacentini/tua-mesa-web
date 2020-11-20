@@ -24,7 +24,7 @@
             <td class="align-middle">{{ waintingLine.name }}</td>
             <td class="align-middle">{{ waintingLine.is_priority }}</td>
             <td class="align-middle"> {{ waintingLine.qty_total }} </td>
-            <td class="align-middle">{{ waintingLine.max_waiting_minutes }}<span> min</span></td>
+            <td class="align-middle">{{ waintingLine.max_waiting_minutes }}<span *ngIf="waintingLine.max_waiting_minutes"> min</span></td>
             <td class="align-middle" colspan="2">
               <span>
                 <button class="py-auto btn btn-outline-primary">
@@ -36,6 +36,9 @@
           </tr>
         </tbody>
       </table>
+      <div class="d-flex justify-content-center">
+        <app-spinner [loading]="isLoaded" [httploading]="ishttpLoaded"></app-spinner>
+      </div>
       <ng-template #loadingError>
         <div *ngIf="error$ | async; else loading" >
           Erro ao carregar lista de espera.

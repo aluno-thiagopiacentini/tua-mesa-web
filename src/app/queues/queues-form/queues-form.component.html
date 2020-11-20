@@ -64,6 +64,9 @@
         <button type="button" class="btn btn-secondary" (click)="onCancel()">
           Cancelar
         </button>
+        <div class="d-flex justify-content-center">
+          <app-spinner [loading]="isLoaded" [httploading]="ishttpLoaded"></app-spinner>
+        </div>
       </div>
     </form>
   </div>

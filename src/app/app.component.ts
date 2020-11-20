@@ -1,5 +1,5 @@
-import { AuthService } from './auth/auth.service';
 import { Component } from '@angular/core';
+import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,16 +9,29 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'tua-mesa';
 
-  // mostrarMenu = true;
+  constructor(private route: Router) {}
 
-  constructor(private authService: AuthService) {
-
-  }
+  isLoaded = false;
+  ishttpLoaded = false;
 
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnInit(): void {
-    // this.authService.mostrarMenuEmitter.subscribe(
-    //   mostrar => this.mostrarMenu = mostrar
-    // );
+    this.route.events.subscribe( event => {
+      if (event instanceof NavigationStart) {
+        console.log('navigation starts');
+        this.isLoaded = true;
+        console.log('navigation starts : ' + this.isLoaded);
+      }
+      else if (event instanceof NavigationEnd) {
+        console.log('navigation ends');
+        this.isLoaded = false;
+        console.log('navigation ends : ' + this.isLoaded);
+      }
+    },
+    error => {
+      this.isLoaded = false;
+      console.log(' %%%%%%%%%%%%%%%%%%%%%%%%%%% ' + error);
+    }
+    );
   }
 }
