@@ -21,7 +21,15 @@
           </div>
         </div>
 
-        <div class="col-md mb-3">
+        <div class="col-md mb-3 form-group">
+          <label for="is_priority">Prioritária</label>
+            <select class="form-control is-valid" id="is_priority" formControlName="is_priority">
+              <option value="true">Sim</option>
+              <option value="false" selected>Não</option>
+            </select>
+        </div>
+
+        <!-- <div class="col-md mb-3">
           <label for="is_priority">Prioritária</label>
           <input type="text" class="form-control is-valid" id="is_priority" placeholder="Preferencial?"
             formControlName="is_priority" [ngClass]="{ 'is-invalid': submitted && hasError('is_priority') }" />
@@ -36,7 +44,7 @@
             Prioridade precisa ter no máximo
             {{ hasError("is_priority")["maxlength"].requiredLength }} caracteres.
           </div>
-        </div>
+        </div> -->
 
         <!-- <div class="col-md mb-3">
           <label for="status">Status</label>
@@ -58,7 +66,7 @@
       </div>
 
       <div>
-        <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()" [disabled]="formQueue.invalid">
           Salvar
         </button>
         <button type="button" class="btn btn-secondary" (click)="onCancel()">

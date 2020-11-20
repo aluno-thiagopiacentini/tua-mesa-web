@@ -69,9 +69,7 @@ export class QueuesFormComponent implements OnInit {
       is_priority: [
         queue.is_priority,
         [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(5)
+          Validators.required
         ]
       ]
     });
@@ -94,6 +92,7 @@ export class QueuesFormComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   onSubmit() {
+    console.log('OnSubmit : ' + JSON.stringify(this.formQueue.value));
     this.submitted = true;
     this.isLoaded = true;
     if (this.formQueue.valid) {
