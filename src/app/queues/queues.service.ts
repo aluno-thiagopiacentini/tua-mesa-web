@@ -44,6 +44,6 @@ export class QueuesService {
 
   // tslint:disable-next-line: typedef
   remove(id) {
-    return this.http.delete(`${this.API}/${id}`).pipe(take(1));
+    return this.http.put(`${this.API}/${id}`, { status: 0} , { withCredentials: true}).pipe(take(1));
   }
 }

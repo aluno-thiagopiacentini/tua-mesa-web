@@ -1,5 +1,5 @@
 import { Payload } from './interfaces/auth';
-import { map, catchError, tap, take } from 'rxjs/operators';
+import { map, catchError, tap, take, delay } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
@@ -7,7 +7,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { Signin } from './interfaces/signin';
 import { Signup } from './interfaces/signup';
 import { Auth } from './interfaces/auth';
-import { throwError } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
 
 interface Company {
   id: number;
@@ -53,7 +53,7 @@ export class AuthService {
   //   return this.usuarioAutenticado;
   // }
 
-  signIn(credential: Signin) {
+  signIn(credential: Signin): Observable<void> {
     return this.http.post(this.endpoint + '/login', { email: credential.email } , {
       headers: {
       'content-type': 'application/json',
@@ -62,17 +62,16 @@ export class AuthService {
       withCredentials: true,
       },
       )
-      .pipe(map((auth: Auth) => this.setAuth(auth)),
+      .pipe(delay(1000), map(() => {}),
         catchError((response) => throwError(response.error))
       );
   }
 
 
-  SignUp(request: Signup) {
+  SignUp(request: Signup): Promise<void> {
     return this.createCompany(request)
     .then( (data: CompanyResponse) => {
       const { id }  = data.data;
-      console.log('Response Company Created : ' + JSON.stringify(id));
       const user = this.http.post(this.endpoint, {
                               username: request.username,
                               password: request.password,
@@ -92,36 +91,36 @@ export class AuthService {
 
   }
 
-  setAuth(auth: Auth) {
-    if (!auth) return;
-    this.auth = auth.payload;
-    this.token = auth.token;
-  }
-  set auth(payload: Payload) {
-    window.localStorage.setItem(
-      this.AUTH_KEY,
-      JSON.stringify(payload)
-    );
-  }
-  get auth(){
-    return JSON.parse(
-      window.localStorage.getItem(this.AUTH_KEY)
-    );
-  }
-  set token(token: string){
-    window.localStorage.setItem(
-      this.TOKEN_KEY,
-      token
-    );
-  }
-  get token(){
-    return window.localStorage.getItem(this.TOKEN_KEY);
-  }
+  // setAuth(auth: Auth) {
+  //   if (!auth) return;
+  //   this.auth = auth.payload;
+  //   this.token = auth.token;
+  // }
+  // set auth(payload: Payload) {
+  //   window.localStorage.setItem(
+  //     this.AUTH_KEY,
+  //     JSON.stringify(payload)
+  //   );
+  // }
+  // get auth(){
+  //   return JSON.parse(
+  //     window.localStorage.getItem(this.AUTH_KEY)
+  //   );
+  // }
+  // set token(token: string){
+  //   window.localStorage.setItem(
+  //     this.TOKEN_KEY,
+  //     token
+  //   );
+  // }
+  // get token(){
+  //   return window.localStorage.getItem(this.TOKEN_KEY);
+  // }
 
-  signOut() {
-    window.localStorage.removeItem(this.AUTH_KEY);
-    window.localStorage.removeItem(this.TOKEN_KEY);
-  }
+  // signOut() {
+  //   window.localStorage.removeItem(this.AUTH_KEY);
+  //   window.localStorage.removeItem(this.TOKEN_KEY);
+  // }
 
   isLogged() {
     return this.http.get(`${this.endpoint}/currentuser`, { withCredentials: true }).pipe(take(1));

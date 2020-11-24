@@ -15,7 +15,7 @@
           <tr>
             <th scope="col">Nome</th>
             <th scope="col">Prioritária</th>
-            <th scope="col">Ativa</th>
+            <!-- <th scope="col">Ativa</th> -->
             <th scope="col">Ações</th>
           </tr>
         </thead>
@@ -23,15 +23,15 @@
           <tr *ngFor="let queue of queues">
             <td>{{ queue.name }}</td>
             <td [innerHTML]="queue.is_priority | transformBoolean"></td>
-            <td [innerHTML]="queue.status | transformBoolean"></td>
+            <!-- <td [innerHTML]="queue.status | transformBoolean"></td> -->
             <td colspan="2">
-              <span>
+              <!-- <span>
                 <button class="btn btn-outline-primary" (click)="onEdit(queue.id)">
                   <mat-icon class="align-middle" aria-hidden="false" aria-label="Editar fila">
                     edit
                   </mat-icon>
                 </button>
-              </span>
+              </span> -->
               <span>
                 <button class="btn btn-outline-danger" (click)="onDelete(queue)">
                   <mat-icon class="align-middle" aria-hidden="false" aria-label="Excluir fila">

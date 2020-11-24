@@ -66,7 +66,9 @@ export class QueuesComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   onDelete(id) {
+    
     this.queueSelected = id;
+    console.log('Excluir fila : ' + this.queueSelected.id);
     // this.deleteModalRef = this.modalService.show(this.deleteModal, {class: 'class-sm'});
     const result$ = this.alertService.showConfirm(
       'Confirmação',
