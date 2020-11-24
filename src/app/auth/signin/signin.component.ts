@@ -16,6 +16,7 @@ import { AuthService } from '../auth.service';
 export class SigninComponent {
   ishttpLoaded = false;
   isLoaded = false;
+  logged = false;
 
   signInForm: FormGroup;
 
@@ -28,6 +29,16 @@ export class SigninComponent {
       email: ['', Validators.required],
       username: ['', Validators.required],
       password: ['', Validators.required]
+    });
+  }
+  ngOnInit(): void {
+    this.ngOnRefresh();
+  }
+  ngOnRefresh(): void {
+    this.authService.isLogged().subscribe(data => {
+      this.logged = true;
+    }, (error) => {
+      this.logged = false;
     });
   }
 
