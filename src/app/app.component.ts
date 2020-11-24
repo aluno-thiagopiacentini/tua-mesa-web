@@ -18,19 +18,14 @@ export class AppComponent {
   ngOnInit(): void {
     this.route.events.subscribe( event => {
       if (event instanceof NavigationStart) {
-        console.log('navigation starts');
         this.isLoaded = true;
-        console.log('navigation starts : ' + this.isLoaded);
       }
       else if (event instanceof NavigationEnd) {
-        console.log('navigation ends');
         this.isLoaded = false;
-        console.log('navigation ends : ' + this.isLoaded);
       }
     },
     error => {
       this.isLoaded = false;
-      console.log(' %%%%%%%%%%%%%%%%%%%%%%%%%%% ' + error);
     }
     );
   }

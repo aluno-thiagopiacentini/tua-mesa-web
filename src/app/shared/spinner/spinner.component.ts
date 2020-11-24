@@ -12,13 +12,10 @@ export class SpinnerComponent implements OnInit {
   @Input() httploading = false;
 
   ngOnInit(): void {
-    
   }
 
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnChanges(changes: SimpleChange): void
   {
-    console.log('Changes : ' + JSON.stringify(changes));
-    console.log('!!!!!!!!!!! : ' + this.loading);
   }
 }

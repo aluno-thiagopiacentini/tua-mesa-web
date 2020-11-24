@@ -41,7 +41,7 @@ export class SignupComponent implements OnInit {
      })
      .catch((error) => {
       this.isLoaded = false;
-      console.log('Error creating user: ' + JSON.stringify(error))
+      console.log('Error creating user: ' + JSON.stringify(error));
      });
   }
 }
