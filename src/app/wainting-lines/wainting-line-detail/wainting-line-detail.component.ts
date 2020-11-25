@@ -23,6 +23,7 @@ export class WaintingLineDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log('VOLTANDO PARA O DETAIL (ONINIT)');
     this.route.paramMap.subscribe( paramMap => {
       this.id = paramMap.get('id');
     });
@@ -31,8 +32,10 @@ export class WaintingLineDetailComponent implements OnInit {
   }
 
   onRefresh(): void {
+    console.log('VOLTANDO PARA O DETAIL (ONREFRESH)');
     this.isLoaded = true;
     this.service.listWaintingLines(this.id).subscribe( data => {
+      console.log('response API waintingLines : ' + JSON.stringify(data));
       this.waintingLinesDetail = data;
       this.isLoaded = false;
     },
@@ -57,4 +60,11 @@ export class WaintingLineDetailComponent implements OnInit {
       this.onRefresh();
     });
   }
+
+  onAdd(id): void {
+    console.log('CHEGOU NO ON ADD COM O ID : ' + id);
+    // this.router.navigate(['nova-espera-new', id], {relativeTo: this.route});
+    this.router.navigateByUrl(`/nova-espera/${id}`);
+  }
+
 }

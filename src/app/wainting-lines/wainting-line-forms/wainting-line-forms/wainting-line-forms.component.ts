@@ -14,7 +14,7 @@ import { map, switchMap } from 'rxjs/operators';
   preserveWhitespaces: true,
 })
 export class WaintingLineFormsComponent implements OnInit {
-
+  waitingLineId: string;
   formNewClient: FormGroup;
   submitted = false;
   ishttpLoaded = false;
@@ -31,30 +31,26 @@ export class WaintingLineFormsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // this.route.params
-    // .pipe(
-    //   map((params: any) => params['id']),
-    //   switchMap(id => this.waintingLinesDetailService.loadById(id))
-    // )
-    // .subscribe(lineUp => this.updateClient(lineUp));
+    this.route.paramMap.subscribe( paramMap => {
+      this.waitingLineId = paramMap.get('id');
+    });
 
+    const waintingLine = this.route.snapshot.data['novaEspera'];
 
-      const waintingLine = this.route.snapshot.data['novaEspera'];
-
-      this.formNewClient = this.formBuilder.group({
-      name: [
-        null,
-        [Validators.required, Validators.minLength(3), Validators.maxLength(100)]
-      ],
-      phone_number: [
-        null, [Validators.required]
-      ],
-      email: [
-        null, [Validators.minLength(3), Validators.maxLength(100)]
-      ],
-      description: [
-        null, [Validators.minLength(3), Validators.maxLength(100)]
-      ]
+    this.formNewClient = this.formBuilder.group({
+    name: [
+      null,
+      [Validators.required, Validators.minLength(3), Validators.maxLength(100)]
+    ],
+    phone_number: [
+      null, [Validators.required]
+    ],
+    email: [
+      null, [Validators.minLength(3), Validators.maxLength(100)]
+    ],
+    description: [
+      null, [Validators.minLength(3), Validators.maxLength(100)]
+    ]
     });
   }
 
@@ -75,7 +71,7 @@ export class WaintingLineFormsComponent implements OnInit {
     this.submitted = true;
     this.isLoaded = true;
 
-    this.waintingLinesDetailService.save(this.formNewClient.value)
+    this.waintingLinesDetailService.save(this.formNewClient.value, this.waitingLineId)
     .then( () => {
       this.alertService.showAlertSuccess('Cadastro realizado com sucesso!');
       this.isLoaded = false;
@@ -86,7 +82,7 @@ export class WaintingLineFormsComponent implements OnInit {
       console.log(error);
       this.alertService.showAlertDanger(error.error.message);
     });
-    
+
     // .subscribe(
     //     success => {
     //       this.alertService.showAlertSuccess('Cadastro realizado com sucesso!');

@@ -18,23 +18,23 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let detail of waintingLinesDetail.data; let i = index">
+          <tr *ngFor="let detail of waintingLinesDetail?.data; let i = index">
             <th scope="row" class="text-left">{{ i + 1}}</th>
-            <td>{{ detail.customer_name }}</td>
-            <td>{{ detail.customer_phone_number }}</td>
-            <td>{{ detail.joined_at }} </td>
-            <td [innerHTML]="detail.status | transformStatusFila"></td>
+            <td>{{ detail?.customer_name }}</td>
+            <td>{{ detail?.customer_phone_number }}</td>
+            <td>{{ detail?.joined_at }} </td>
+            <td [innerHTML]="detail?.status | transformStatusFila"></td>
             <td>
               <span>
                 <button class="btn btn-outline-primary">
-                  <mat-icon class="align-top" aria-hidden="false" aria-label="Editar fila" (click)="onEdit(detail.id)" >
+                  <mat-icon class="align-top" aria-hidden="false" aria-label="Editar fila" (click)="onEdit(detail?.id)" >
                     edit
                   </mat-icon>
                 </button>
               </span>
               <span>
                 <button class="btn btn-outline-danger">
-                  <mat-icon class="align-top" aria-hidden="false" aria-label="Escluir fila">
+                  <mat-icon class="align-top" aria-hidden="false" aria-label="Excluir fila">
                     delete
                   </mat-icon>
                 </button>
@@ -44,7 +44,7 @@
         </tbody>
       </table>
       <div class="d-flex justify-content-between">
-        <button class="btn btn-primary" [routerLink]="['/nova-espera']">Adicionar</button>
+        <button class="btn btn-primary" (click)="onAdd(id)">Adicionar</button>
         <div class="d-flex justify-content-center">
           <app-spinner [loading]="isLoaded" [httploading]="ishttpLoaded"></app-spinner>
         </div>

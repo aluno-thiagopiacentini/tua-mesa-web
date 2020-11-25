@@ -48,9 +48,6 @@ const routes: Routes = [
     path: 'nova-espera/:id',
     component: WaintingLineFormsComponent,
      canActivate: [AuthGuard],
-     resolve: {
-       novaEspera: WaintingLineResolverGuard,
-     }
   },
   {
     path: 'filas/nova-fila',
@@ -60,6 +57,14 @@ const routes: Routes = [
     },
     canActivate: [AuthGuard],
   },
+  // {
+  //   path: 'users/editar/:id',
+  //   component: UsersFormComponent,
+  //   // resolve: {
+  //   //   user: UsersResolverGuard,
+  //   // },
+  //   // canActivate: [AuthGuard],
+  // },
   {
     path: 'filas/editar/:id',
     component: QueuesFormComponent,

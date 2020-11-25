@@ -25,9 +25,9 @@ export class WaintingLinesDetailService {
       .get<WaintingLinesDetail>(this.API+id, {withCredentials: true});
     }
 
-  loadById(id) {
-    return this.http.get<WaintingLinesDetail>(`${this.API}/${id}`).pipe(take(1));
-  }
+  // loadById(id) {
+  //   return this.http.get<WaintingLinesDetail>(`${this.API}/${id}`).pipe(take(1));
+  // }
 
   nextCustomer(id: number) {
     return this.http.get('http://www.tuamesa.com.br:8080/api/line-ups/next-customer?waiting_line_id='+id, { withCredentials: true})
@@ -82,12 +82,12 @@ export class WaintingLinesDetailService {
     .toPromise();
   }
 
-  save(client: Customer) {
+  save(client: Customer, waitingLineId: string) {
     return this.getCustomer(client)
     .then((data: CustomerResponse) => {
       const { id } = data.data;
       const user = this.http.post('http://www.tuamesa.com.br:8080/api/line-ups', {
-        waiting_line_id: 66,
+        waiting_line_id: waitingLineId,
         customer_id: id
         }, {withCredentials: true}).toPromise();
       user
