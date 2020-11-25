@@ -44,13 +44,13 @@ export class WaintingLineFormsComponent implements OnInit {
       this.formNewClient = this.formBuilder.group({
       name: [
         null,
-        [Validators.required, Validators.minLength(3), Validators.maxLength(20)]
+        [Validators.required, Validators.minLength(3), Validators.maxLength(100)]
       ],
       phone_number: [
         null, [Validators.required]
       ],
       email: [
-        null, [Validators.minLength(3), Validators.maxLength(20)]
+        null, [Validators.minLength(3), Validators.maxLength(100)]
       ],
       description: [
         null, [Validators.minLength(3), Validators.maxLength(100)]
