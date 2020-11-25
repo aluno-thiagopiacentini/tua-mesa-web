@@ -33,16 +33,12 @@ export class StatusPositionComponent implements OnInit {
     this.service.listPosition(this.token).subscribe( data => {
       this.customerPosition = data;
       this.customerPosition.data[0].company_logo = 'https://image.freepik.com/vetores-gratis/desenho-restaurante-bela_23-2147567264.jpg';
-      console.log('@@@@@ : ' + JSON.stringify(this.customerPosition));
   });
   }
 
   onExitLine(token): void {
-    console.log('Sair da fila : ' + token);
     this.service.exitLine(this.token).subscribe( data => {
-      // this.customerPosition = data;
-      // this.customerPosition.data[0].company_logo = 'https://image.freepik.com/vetores-gratis/desenho-restaurante-bela_23-2147567264.jpg';
-      // console.log('@@@@@ : ' + JSON.stringify(this.customerPosition));
+      this.router.navigate(['/']);
   });
   }
 }
