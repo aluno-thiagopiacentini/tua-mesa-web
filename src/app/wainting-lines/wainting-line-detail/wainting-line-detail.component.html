@@ -12,7 +12,7 @@
             <th scope="col" class="text-left">Posição</th>
             <th scope="col">Nome</th>
             <th scope="col">Celular</th>
-            <th scope="col">Atendimento</th>
+            <th scope="col">Tempo de Espera</th>
             <th scope="col">Situação</th>
             <th scope="col">Ações</th>
           </tr>
@@ -22,7 +22,8 @@
             <th scope="row" class="text-left">{{ i + 1}}</th>
             <td>{{ detail?.customer_name }}</td>
             <td>{{ detail?.customer_phone_number }}</td>
-            <td>{{ detail?.joined_at }} </td>
+            <!-- <td>{{ detail?.joined_at | date : 'd/M/y HH:mm'}} </td> -->
+            <td *ngIf="detail?.joined_at">{{ timediff(detail?.joined_at) }} <span> min</span></td>
             <td [innerHTML]="detail?.status | transformStatusFila"></td>
             <td>
               <span>

@@ -2,6 +2,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { WaintingLinesDetailService } from './wainting-lines-detail.service';
 import { Component, OnInit } from '@angular/core';
 import { WaintingLinesDetail } from './wainting-lines-detail';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-wainting-line-detail',
@@ -28,6 +29,12 @@ export class WaintingLineDetailComponent implements OnInit {
     });
 
     this.onRefresh();
+  }
+
+  timediff = (start) => {
+    const startDate = new Date(start);
+    const endDate = new Date();
+    return moment.utc(moment(endDate).diff(moment(startDate))).format('mm');
   }
 
   onRefresh(): void {
