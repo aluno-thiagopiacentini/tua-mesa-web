@@ -16,9 +16,16 @@ export class StatusPositionService {
   // tslint:disable-next-line: typedef
   listPosition(token) {
     return this.http
-      .get<CustomerPosition[]>(this.API+token, {withCredentials: true})
+      .get<CustomerPosition[]>(this.API + token, {withCredentials: true})
       .pipe(tap(console.log));
     }
+    
+  // tslint:disable-next-line: typedef
+  exitLine(token) {
+    return this.http
+      .put(this.API + token, {withCredentials: true})
+      .pipe(tap(console.log));
+  }
 }
 
 
