@@ -49,11 +49,13 @@ export class SigninComponent {
     ).subscribe(
       (response) => {
         this.isLoaded = false;
+        this.logged = true;
         this.route.navigate(['espera']);
       }
       ,
       (error) => {
         this.isLoaded = false;
+        this.logged = false;
         this.signInForm.get('password').reset();
       }
     );

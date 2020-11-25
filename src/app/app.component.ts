@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,10 @@ import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 })
 export class AppComponent {
   title = 'tua-mesa';
+  logged = false;
 
-  constructor(private route: Router) {}
+  constructor(private route: Router,
+              private authService: AuthService) {}
 
   isLoaded = false;
   ishttpLoaded = false;
@@ -28,5 +31,14 @@ export class AppComponent {
       this.isLoaded = false;
     }
     );
+    this.ngOnRefresh();
+  }
+
+  ngOnRefresh(): void {
+    this.authService.isLogged().subscribe(data => {
+      this.logged = true;
+    }, (error) => {
+      this.logged = false;
+    });
   }
 }

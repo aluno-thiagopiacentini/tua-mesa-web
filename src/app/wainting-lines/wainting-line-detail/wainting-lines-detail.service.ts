@@ -108,11 +108,12 @@ export class WaintingLinesDetailService {
       .then((data) => { console.log('User Added to Line !' + JSON.stringify(data)); return data; })
       .catch( (error) => {
         console.log(JSON.stringify(error));
+        
       });
-    })
-    .catch( error => {
-      return error;
     });
+    // .catch( error => {
+    //   return error;
+    // });
   }
   //   if(client.id){
   //     return this.update(client);
