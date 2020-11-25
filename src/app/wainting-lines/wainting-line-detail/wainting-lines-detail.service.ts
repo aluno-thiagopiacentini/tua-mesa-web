@@ -46,6 +46,20 @@ export class WaintingLinesDetailService {
     });
   }
 
+  customerArrive(id) {
+    return this.http.put(`http://www.tuamesa.com.br:8080/api/line-ups/${id}`,
+                                  {status: '3'},
+                                  {withCredentials: true})
+                                  .toPromise();
+    }
+
+  deleteCustomer(id) {
+      return this.http.put(`http://www.tuamesa.com.br:8080/api/line-ups/${id}`,
+                                    {status: '4'},
+                                    {withCredentials: true})
+                                    .toPromise();
+  }
+
   create(client) {
     return this.http
       .post(this.API,

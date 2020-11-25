@@ -26,14 +26,14 @@
             <td [innerHTML]="detail?.status | transformStatusFila"></td>
             <td>
               <span>
-                <button class="btn btn-outline-primary">
-                  <mat-icon class="align-top" aria-hidden="false" aria-label="Editar fila" (click)="onEdit(detail?.id)" >
-                    edit
-                  </mat-icon>
+                <button class="btn btn-outline-success" *ngIf="detail?.status > 0" (click)="onArrive(detail.id)">
+                  <!-- <mat-icon class="align-top" aria-hidden="false" aria-label="Cliente chegou" (click)="onArrive(detail?.id)" > -->
+                    Chegou
+                  <!-- </mat-icon> -->
                 </button>
               </span>
               <span>
-                <button class="btn btn-outline-danger">
+                <button class="btn btn-outline-danger" (click)="onDelete(detail.id)">
                   <mat-icon class="align-top" aria-hidden="false" aria-label="Excluir fila">
                     delete
                   </mat-icon>
@@ -46,7 +46,7 @@
       <div class="d-flex justify-content-between">
         <button class="btn btn-primary" (click)="onAdd(id)">Adicionar</button>
         <div class="d-flex justify-content-center">
-          <app-spinner [loading]="isLoaded" [httploading]="ishttpLoaded"></app-spinner>
+          <app-spinner [loading]="isLoaded"></app-spinner>
         </div>
         <button class="btn btn-success" (click)="onCall(id)">Chamar próximo</button>
       </div>

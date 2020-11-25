@@ -23,7 +23,6 @@ export class WaintingLineDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log('VOLTANDO PARA O DETAIL (ONINIT)');
     this.route.paramMap.subscribe( paramMap => {
       this.id = paramMap.get('id');
     });
@@ -32,10 +31,8 @@ export class WaintingLineDetailComponent implements OnInit {
   }
 
   onRefresh(): void {
-    console.log('VOLTANDO PARA O DETAIL (ONREFRESH)');
     this.isLoaded = true;
     this.service.listWaintingLines(this.id).subscribe( data => {
-      console.log('response API waintingLines : ' + JSON.stringify(data));
       this.waintingLinesDetail = data;
       this.isLoaded = false;
     },
@@ -43,12 +40,31 @@ export class WaintingLineDetailComponent implements OnInit {
   }
 
   handleError(): void {
-    console.log('*************** ERROR');
     this.isLoaded = false;
   }
 
   onEdit(id): void {
     this.router.navigate(['editar', id], {relativeTo: this.route});
+  }
+
+  onArrive(id): void {
+    console.log('CLICOU ONARRIVE : ' + id);
+    this.isLoaded = true;
+    this.service.customerArrive(id)
+    .then(() => this.onRefresh())
+    .catch(() => {
+      this.isLoaded = false;
+      this.onRefresh();
+    });
+  }
+  onDelete(id): void {
+    this.isLoaded = true;
+    this.service.deleteCustomer(id)
+    .then(() => this.onRefresh())
+    .catch(() => {
+      this.isLoaded = false;
+      this.onRefresh();
+    });
   }
 
   onCall(id): void {
