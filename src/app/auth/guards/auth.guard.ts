@@ -12,7 +12,7 @@ import {
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  private logged = true;
+  private logged = false;
 
   constructor(
     private authService: AuthService,
